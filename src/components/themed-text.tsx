@@ -1,6 +1,6 @@
 import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Fonts, ThemeColor } from '@/constants/theme';
+import { Fonts, ThemeColor } from '@/tokens/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
@@ -13,6 +13,19 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
 
   return (
     <Text
+    // As chaves significam "agora vou sair do HTML-like e colocar uma expressão JavaScript"
+    // Em A && B, se A for verdadeiro retorna B, se A for falso retorna A, ou seja, false
+
+    // style={{}} é um objeto de estilo EX: style={{color: "red"}}
+    /* 
+    style={[]} é um array de estilos, nele cada elemento tem que ser um objeto
+    EX: style={[
+    {color: "blue"},
+    {backgroundColor: "red"}
+    ]}
+    
+    
+    */
       style={[
         { color: theme[themeColor ?? 'text'] },
         type === 'default' && styles.default,
@@ -25,8 +38,12 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
         type === 'code' && styles.code,
         style,
       ]}
-      {...rest}
-    />
+    >
+
+      <Text style={[{color: "blue"}, {backgroundColor: "red"}]}>
+
+      </Text>
+    </Text>
   );
 }
 
