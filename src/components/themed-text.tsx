@@ -39,10 +39,6 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
         style,
       ]}
     >
-
-      <Text style={[{color: "blue"}, {backgroundColor: "red"}]}>
-
-      </Text>
     </Text>
   );
 }
