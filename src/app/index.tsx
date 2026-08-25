@@ -1,98 +1,72 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+export default function Index() {
+  const router = useRouter();
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <View style={styles.container}>
+      {/* Ícone central */}
+      <Text style={styles.icon}>🏠</Text>
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+      <Text style={styles.title}>Bem-vindo ao TrocaJá 👋</Text>
+      <Text style={styles.subtitle}>Escolha uma opção abaixo</Text>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+      <TouchableOpacity style={styles.button} onPress={() => router.push("/feed")}>
+        <Text style={styles.buttonText}>Feed</Text>
+      </TouchableOpacity>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+      <TouchableOpacity style={styles.buttonSecondary} onPress={() => router.push("/explore")}>
+        <Text style={styles.buttonText}>Explorar</Text>
+      </TouchableOpacity>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+      <TouchableOpacity style={styles.button} onPress={() => router.push("/profile")}>
+        <Text style={styles.buttonText}>Perfil</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.logoutButton} onPress={() => router.replace("/login")}>
+        <Text style={styles.logoutText}>Sair</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+  container: { 
+    flex: 1, 
+    backgroundColor: "#0066ff", // fundo azul moderno
+    alignItems: "center", 
+    justifyContent: "center", 
+    padding: 20 
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+  icon: { fontSize: 72, marginBottom: 20, color: "#fff" },
+  title: { fontSize: 28, fontWeight: "bold", color: "#fff", marginBottom: 10 },
+  subtitle: { fontSize: 16, color: "#e0e0e0", marginBottom: 30 },
+  button: {
+    backgroundColor: "#00c2a8",
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginVertical: 10,
+    width: "80%",
+    elevation: 3,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+  buttonSecondary: {
+    backgroundColor: "#ff9800",
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginVertical: 10,
+    width: "80%",
+    elevation: 3,
   },
-  title: {
-    textAlign: 'center',
+  buttonText: { color: "#fff", textAlign: "center", fontSize: 16, fontWeight: "bold" },
+  logoutButton: {
+    backgroundColor: "#ff4d4f",
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginTop: 20,
+    width: "80%",
+    elevation: 3,
   },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+  logoutText: { color: "#fff", textAlign: "center", fontSize: 16, fontWeight: "bold" },
 });
+
