@@ -1,14 +1,23 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
 
-export default function Layout() {
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
   return (
-    <Stack initialRouteName="login">
-      <Stack.Screen name="login" options={{ headerShown: false }} />
-      <Stack.Screen name="index" options={{ title: "Início" }} />
-      <Stack.Screen name="feed" options={{ title: "Feed" }} />
-      <Stack.Screen name="explore" options={{ title: "Explorar" }} />
-      <Stack.Screen name="profile" options={{ title: "Perfil" }} />
+    <Stack>
+      {/* Grupo de autenticação — sem header */}
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      {/* Grupo de tabs — sem header (cada tela controla o seu) */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* Tela de Chat — header será configurado na própria tela */}
+      <Stack.Screen name="chat/[id]" />
     </Stack>
   );
 }
-
