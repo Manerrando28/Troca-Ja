@@ -1,6 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import type { Product, User } from '@/types';
 import { Colors, Spacing, typography } from '@/tokens/theme';
+import { Image } from 'react-native';
 
 type ProductCardProps = {
   product: Product;
@@ -33,7 +34,9 @@ export default function ProductCard({ product, owner, onPress }: ProductCardProp
     >
       {/* Imagem / placeholder visual */}
       <View style={styles.imagePlaceholder}>
-        <Text style={styles.emoji}>{emoji}</Text>
+        <Image 
+        source={product.image}
+        style={styles.image}></Image>
       </View>
 
       <View style={styles.info}>
@@ -66,6 +69,13 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.985 }],
   },
   imagePlaceholder: {
+    width: '100%',
+    height: 160,
+    backgroundColor: Colors.background,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
     width: '100%',
     height: 160,
     backgroundColor: Colors.background,

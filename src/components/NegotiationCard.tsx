@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   userName: {
     ...typography.h3,
     fontSize: 16,
-    color: Colors.text,
+    color: Colors.secondaryText,
     flex: 1,
   },
   time: {

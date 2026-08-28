@@ -1,11 +1,13 @@
 // Tipos do domínio do TrocaJá
 // Cada entidade possui um ID próprio e relacionamentos via ID.
 
+import type { ImageSourcePropType } from 'react-native';
+
 export type User = {
   id: string;
   name: string;
   username: string;
-  avatar?: string;
+  completedTrades: number;
 };
 
 export type Category = {
@@ -20,6 +22,9 @@ export type Product = {
   description: string;
   categoryId: string;
   availableForTrade: boolean;
+  image: ImageSourcePropType;
+  createdAt: string;
+  featured: boolean;
 };
 
 /**

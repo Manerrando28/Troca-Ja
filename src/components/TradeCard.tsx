@@ -67,7 +67,7 @@ export default function OfferCard({
           <Text style={[styles.buttonText, styles.rejectText]}>Recusar</Text>
         </Pressable>
         <Pressable style={[styles.button, styles.acceptButton]} onPress={onAccept}>
-          <Text style={[styles.buttonText, styles.acceptText]}>Aceitar</Text>
+          <Text style={[styles.buttonText, styles.acceptText]}>Negociar</Text>
         </Pressable>
       </View>
     </View>

@@ -8,14 +8,17 @@
 import { Platform } from 'react-native';
 
 export const Colors = {
-  primary: '#6C63FF',
-  secondary: '#FF6584',
-  background: '#F8F9FA',
-  surface: '#FFFFFF',
-  text: '#212121',
+  primary: '#1c558d',
+  secondary: '#0172bd',
+  background: '#f5f5f5',
+  surface: '#ffffff',
+  button: "#0090f0",
+  text: '#0a4d90',
+  secondaryText: '#1d1d1d',
   textMuted: '#757575',
   error: '#E53935',
   success: '#43A047',
+  buttonText: "#E0E0E0",
   border: '#E0E0E0',
 
   light: {
@@ -75,7 +78,7 @@ export const typography = {
   h1: { fontSize: 28, fontWeight: '700' as const },
   h2: { fontSize: 22, fontWeight: '600' as const },
   h3: { fontSize: 18, fontWeight: '600' as const },
-  body: { fontSize: 14, fontWeight: '400' as const },
+  body: { fontSize: 14, fontWeight: '500' as const },
   caption: { fontSize: 12, fontWeight: '400' as const },
 };
 

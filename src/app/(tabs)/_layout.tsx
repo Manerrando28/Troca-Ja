@@ -1,12 +1,13 @@
 import { Tabs } from 'expo-router';
-import { Colors } from '@/tokens/theme';
+import { Image } from 'react-native';
+import { Colors } from '../../tokens/theme';
 
 export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors.primary,
+        tabBarActiveTintColor: Colors.secondary,
         tabBarInactiveTintColor: Colors.textMuted,
         tabBarStyle: {
           backgroundColor: Colors.surface,
@@ -23,35 +24,54 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => (
-            <TabIcon emoji="🏠" color={color} />
+          tabBarIcon: () => (
+            <Image
+              source={require('../../../assets/ui-images/home.png')}
+              tintColor={ Colors.secondary }
+              style={{ width: 24, height: 24}}
+            />
           ),
         }}
       />
+
       <Tabs.Screen
         name="trades"
         options={{
           title: 'Trocas',
-          tabBarIcon: ({ color }) => (
-            <TabIcon emoji="🔄" color={color} />
+          tabBarIcon: () => (
+            <Image
+              source={require('../../../assets/ui-images/trades.png')}
+              tintColor={ Colors.secondary }
+              style={{ width: 24, height: 24}}
+            />
           ),
         }}
       />
+
       <Tabs.Screen
         name="negotiations"
         options={{
           title: 'Negociações',
-          tabBarIcon: ({ color }) => (
-            <TabIcon emoji="🤝" color={color} />
+          tabBarIcon: () => (
+            <Image
+              source={require('../../../assets/ui-images/negotiations.png')}
+              tintColor={ Colors.secondary }
+              style={{ width: 24, height: 24}}
+            />
           ),
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Perfil',
-          tabBarIcon: ({ color }) => (
-            <TabIcon emoji="👤" color={color} />
+          tabBarIcon: () => (
+            <Image
+              source={require('../../../assets/ui-images/profile.png')}
+              tintColor={ Colors.secondary }
+              style={{ width: 24, height: 24}}
+            />
           ),
         }}
       />
@@ -59,13 +79,3 @@ export default function TabsLayout() {
   );
 }
 
-// Componente local apenas para ícone emoji no tab bar.
-// Não justifica um arquivo separado — é simples e exclusivo deste layout.
-function TabIcon({ emoji, color }: { emoji: string; color: any }) {
-  const { Text } = require('react-native');
-  return (
-    <Text style={{ fontSize: 20, color }}>
-      {emoji}
-    </Text>
-  );
-}

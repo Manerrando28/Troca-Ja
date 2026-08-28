@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
-import { Colors, Spacing, typography } from '@/tokens/theme';
+import { Colors, Spacing, typography } from "@/tokens/theme";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 
 export default function Login() {
   const router = useRouter();
@@ -8,13 +8,17 @@ export default function Login() {
   const handleLogin = () => {
     // Autenticação fake: vai direto para as tabs.
     // Futuramente: validar credenciais antes de navegar.
-    router.replace('/(tabs)' as any);
+    router.replace("/(tabs)" as any);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.hero}>
-        <Text style={styles.logo}>🔄</Text>
+        <Image 
+        style={styles.logo}
+        source={require("../../../assets/ui-images/logo.png")}
+        >
+        </Image>
         <Text style={styles.title}>TrocaJá</Text>
         <Text style={styles.subtitle}>
           Troque produtos com pessoas perto de você
@@ -23,7 +27,10 @@ export default function Login() {
 
       <View style={styles.actions}>
         <Pressable
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
           onPress={handleLogin}
         >
           <Text style={styles.buttonText}>Entrar</Text>
@@ -36,46 +43,47 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.background,
     paddingHorizontal: Spacing.four,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingTop: 120,
     paddingBottom: 60,
   },
   hero: {
-    alignItems: 'center',
+    alignItems: "center",
     gap: Spacing.two,
   },
   logo: {
-    fontSize: 72,
+    width: 200,
+    height: 200,
     marginBottom: Spacing.three,
   },
   title: {
     ...typography.h1,
-    color: Colors.surface,
+    color: Colors.primary,
   },
   subtitle: {
     ...typography.body,
-    color: Colors.surface,
+    color: Colors.secondary,
     opacity: 0.85,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: Spacing.two,
   },
   actions: {
     gap: Spacing.three,
   },
   button: {
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.button,
     paddingVertical: Spacing.three,
     borderRadius: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonPressed: {
     opacity: 0.85,
   },
   buttonText: {
     ...typography.body,
-    fontWeight: '600',
-    color: Colors.primary,
+    fontWeight: "600",
+    color: Colors.buttonText,
   },
 });
