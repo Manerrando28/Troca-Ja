@@ -63,7 +63,7 @@ npm install
 ### 2. Iniciar o projeto
 
 ```bash
-npm run start
+npm run start ou npx expo start (mais utilizado)
 ```
 
 Após iniciar o Expo, é possível executar o projeto nos ambientes disponíveis:
@@ -72,8 +72,6 @@ Após iniciar o Expo, é possível executar o projeto nos ambientes disponíveis
 npm run android
 npm run ios
 npm run web
-
-npx expo start // MAIS UTILIZADA
 ```
 
 Para verificar o código com o linter:
