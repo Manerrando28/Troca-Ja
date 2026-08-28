@@ -63,7 +63,11 @@ npm install
 ### 2. Iniciar o projeto
 
 ```bash
-npm run start ou npx expo start (mais utilizado)
+npm run start
+```
+ou
+```bash
+npx expo start (mais utilizado)
 ```
 
 Após iniciar o Expo, é possível executar o projeto nos ambientes disponíveis:
