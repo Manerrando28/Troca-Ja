@@ -65,6 +65,10 @@ npm install
 ```bash
 npm run start
 ```
+ou
+```bash
+npx expo start (mais utilizado)
+```
 
 Após iniciar o Expo, é possível executar o projeto nos ambientes disponíveis:
 
