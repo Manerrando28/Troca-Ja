@@ -51,6 +51,9 @@ export default function Home() {
     (p) => p.availableForTrade && p.ownerId !== CURRENT_USER_ID,
   );
 
+  console.log("Produtos disponíveis")
+  console.log(availableProducts)
+
   // Produtos pertencentes ao usuário atual
   const myProducts = products.filter(
     (p) => p.ownerId === CURRENT_USER_ID,
@@ -129,9 +132,14 @@ export default function Home() {
    * daquela categoria para servir como miniatura.
    */
   const categoryCards = categories.map((category) => {
+    // se o find não achar nada retorna null
     const categoryProduct = availableProducts.find(
       (product) => product.categoryId === category.id,
     );
+
+    if (!categoryProduct) {
+      return console.warn(` ⚠️ Nenhum produto encontrado para a categoria "${category.name}"`)
+    }
 
     return {
       ...category,
@@ -180,6 +188,8 @@ export default function Home() {
     setSelectedFilter(null);
   };
 
+  console.log(categoryCards);
+
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <View style={styles.container}>
@@ -226,6 +236,9 @@ export default function Home() {
                   contentContainerStyle={styles.categoryList}
                   nestedScrollEnabled
                 >
+                  {/* Expressão -> pedaço de código que é avaliado e resulta em um valor */}
+                  {/* Declaração -> instrução que define algo, uma variável ou função */}
+
                   {categoryCards.map((item) => {
                     const isSelected =
                       selectedCategoryId === item.id;
@@ -470,13 +483,13 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: 76,
     height: 76,
-    borderRadius: 16,
+    borderRadius: 8,
   },
 
   categoryImagePlaceholder: {
     width: 76,
     height: 76,
-    borderRadius: 16,
+    borderRadius: 8,
     backgroundColor: Colors.surface,
     alignItems: "center",
     justifyContent: "center",
@@ -514,7 +527,7 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
-    borderRadius: 20,
+    borderRadius: 8,
     backgroundColor: Colors.surface,
     borderWidth: 1,
     borderColor: Colors.border,

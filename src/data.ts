@@ -46,6 +46,12 @@ export const users: User[] = [
     username: "carlasouza",
     completedTrades: 27,
   },
+  {
+    id: "user-4",
+    name: "Claúdio Costa",
+    username: "clauclau",
+    completedTrades: 3,
+  },
 ];
 
 // ─── Categorias ───────────────────────────────────────────────────────────────
@@ -84,12 +90,12 @@ export const products: Product[] = [
   },
   {
     id: 'prod-3',
-    ownerId: 'user-1',
+    ownerId: 'user-4',
     name: 'Livros de Clean Code',
     description: 'Clean Code + The Pragmatic Programmer, ambos em inglês.',
     categoryId: 'cat-3',
-    availableForTrade: false,
-    image: require('../assets/products/bik-speed-trek.jpg'),
+    availableForTrade: true,
+    image: require('../assets/products/livros.jpg'),
     createdAt: '2026-08-25T10:00:00.000Z',
     featured: false,
   },
