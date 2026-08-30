@@ -138,7 +138,7 @@ export default function Home() {
     );
 
     if (!categoryProduct) {
-      return console.warn(` ⚠️ Nenhum produto encontrado para a categoria "${category.name}"`)
+      console.warn(` ⚠️ Nenhum produto encontrado para a categoria "${category.name}"`)
     }
 
     return {
