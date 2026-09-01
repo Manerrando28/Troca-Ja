@@ -1,3 +1,10 @@
+# Integrantes
+
+Fernando Carlos Colque Huaranca RM558095
+Gabriel Guilherme Leste RM558638
+Gabriel Lacerda Araújo RM558307
+Julia Carolina Ferreira Silva RM558896
+
 # TrocaJá
 
 Aplicativo mobile de **trocas de produtos entre usuários**, desenvolvido com React Native e Expo.
