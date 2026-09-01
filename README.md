@@ -192,7 +192,7 @@ Os dados são relacionados por IDs, seguindo os tipos definidos em `src/types.ts
 
 ## Modelo de dados
 
-As principais entidades do projeto são:
+As principais entidades do projeto estruturam-se da seguinte forma:
 
 ```text
 User
@@ -218,12 +218,10 @@ Message
 
 Os status de uma negociação são:
 
-```text
-pending
-accepted
-rejected
-cancelled
-```
+- `pending` — Proposta enviada, aguardando resposta.
+- `accepted` — Proposta aceita, chat liberado entre os participantes.
+- `rejected` — Proposta recusada pelo receptor.
+- `cancelled` — Negociação cancelada pelo iniciador.
 
 ---
 
