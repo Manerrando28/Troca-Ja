@@ -1,22 +1,47 @@
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { useFonts } from 'expo-font';
 
-// Keep the splash screen visible while we fetch resources
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter';
+
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+  });
+
   useEffect(() => {
-    SplashScreen.hideAsync();
-  }, []);
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <Stack>
-      {/* Grupo de autenticação — sem header */}
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      {/* Grupo de tabs — sem header (cada tela controla o seu) */}
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      {/* Tela de Chat — header será configurado na própria tela */}
+      <Stack.Screen
+        name="(auth)"
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="(tabs)"
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen name="chat/[id]" />
     </Stack>
   );

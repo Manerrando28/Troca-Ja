@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
   ownerName: {
     ...typography.body,
     fontWeight: '600',
-    color: Colors.text,
+    color: Colors.secondaryText,
+    opacity: 0.75,
   },
   ownerUsername: {
     ...typography.caption,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   tradeLabel: {
     ...typography.caption,
     color: Colors.textMuted,
-    fontWeight: '600',
+    fontWeight: '700',
     textTransform: 'uppercase',
   },
   tradeLabelRight: {
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
   },
   productName: {
     ...typography.body,
+    fontSize: 15,
     color: Colors.text,
   },
   productNameRight: {
@@ -165,6 +167,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     ...typography.body,
-    fontWeight: '600',
+    fontWeight: '500',
   },
 });

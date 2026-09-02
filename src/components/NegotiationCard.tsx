@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     ...typography.h3,
     fontSize: 16,
     color: Colors.secondaryText,
+    opacity: 0.85,
     flex: 1,
   },
   time: {

@@ -1,6 +1,8 @@
-import { Tabs } from 'expo-router';
-import { Image } from 'react-native';
-import { Colors } from '../../tokens/theme';
+import { Tabs } from "expo-router";
+import { Image } from "react-native";
+import { Colors } from "../../tokens/theme";
+
+
 
 export default function TabsLayout() {
   return (
@@ -12,23 +14,27 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: Colors.surface,
           borderTopColor: Colors.border,
-          borderTopWidth: 1,
+          borderTopWidth: 0,
+
+          height: 65,
+          paddingTop: 6,
+          paddingBottom: 2,
         },
         tabBarLabelStyle: {
           fontSize: 11,
-          fontWeight: '500',
+          fontWeight: "500",
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: () => (
             <Image
-              source={require('../../../assets/ui-images/home.png')}
-              tintColor={ Colors.secondary }
-              style={{ width: 24, height: 24}}
+              source={require("../../../assets/ui-images/home.png")}
+              tintColor={Colors.primary}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -37,12 +43,12 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="trades"
         options={{
-          title: 'Trocas',
+          title: "Trocas",
           tabBarIcon: () => (
             <Image
-              source={require('../../../assets/ui-images/trades.png')}
-              tintColor={ Colors.secondary }
-              style={{ width: 24, height: 24}}
+              source={require("../../../assets/ui-images/trades.png")}
+              tintColor={Colors.primary}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -51,12 +57,12 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="negotiations"
         options={{
-          title: 'Negociações',
+          title: "Negociações",
           tabBarIcon: () => (
             <Image
-              source={require('../../../assets/ui-images/negotiations.png')}
-              tintColor={ Colors.secondary }
-              style={{ width: 24, height: 24}}
+              source={require("../../../assets/ui-images/negotiations.png")}
+              tintColor={Colors.primary}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -65,12 +71,12 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Perfil',
+          title: "Perfil",
           tabBarIcon: () => (
             <Image
-              source={require('../../../assets/ui-images/profile.png')}
-              tintColor={ Colors.secondary }
-              style={{ width: 24, height: 24}}
+              source={require("../../../assets/ui-images/profile.png")}
+              tintColor={Colors.primary}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -78,4 +84,3 @@ export default function TabsLayout() {
     </Tabs>
   );
 }
-

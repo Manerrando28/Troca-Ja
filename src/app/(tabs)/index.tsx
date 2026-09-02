@@ -1,3 +1,26 @@
+/*
+- FlatList é um componente feito para renderizar listas longas de dados de forma altamente
+performática e otimizada, nesse projeto usamos para renderizar a lista de produtos.
+
+- ListHeaderComponent é um componente que o FlatList renderiza antes de renderizar os itens da lista
+de dados, nesse projeto usamos para renderizar textos que antecedem os dados (veja no diagrama abaixo)
+
+FlatList
+│
+├── ListHeaderComponent
+│   │
+│   ├── Saudação
+│   ├── Categorias
+│   ├── Filtros
+│   └── Título dos produtos
+│
+├── ProductCard
+├── ProductCard
+├── ProductCard
+├── ProductCard
+└── ...
+*/
+
 import { useState } from "react";
 
 import {
@@ -51,8 +74,8 @@ export default function Home() {
     (p) => p.availableForTrade && p.ownerId !== CURRENT_USER_ID,
   );
 
-  console.log("Produtos disponíveis")
-  console.log(availableProducts)
+  console.log("Produtos disponíveis");
+  console.log(availableProducts);
 
   // Produtos pertencentes ao usuário atual
   const myProducts = products.filter(
@@ -63,7 +86,7 @@ export default function Home() {
    * Filtra os produtos pela categoria e pelo filtro selecionado.
    */
   const filteredProducts = availableProducts.filter((product) => {
-    // ─── Filtro por categoria ──────────────────────────────────────
+    // Filtro por categoria
     if (
       selectedCategoryId &&
       product.categoryId !== selectedCategoryId
@@ -71,7 +94,7 @@ export default function Home() {
       return false;
     }
 
-    // ─── Lançados hoje ─────────────────────────────────────────────
+    // Lançados hoje
     if (selectedFilter === "today") {
       const today = new Date().toISOString().split("T")[0];
 
@@ -80,12 +103,12 @@ export default function Home() {
       return productDate === today;
     }
 
-    // ─── Destaques ─────────────────────────────────────────────────
+    // Destaques
     if (selectedFilter === "featured") {
       return product.featured;
     }
 
-    // ─── Usuários confiáveis ───────────────────────────────────────
+    // Usuários confiáveis
     if (selectedFilter === "trusted") {
       const owner = users.find(
         (user) => user.id === product.ownerId,
@@ -132,13 +155,14 @@ export default function Home() {
    * daquela categoria para servir como miniatura.
    */
   const categoryCards = categories.map((category) => {
-    // se o find não achar nada retorna null
     const categoryProduct = availableProducts.find(
       (product) => product.categoryId === category.id,
     );
 
     if (!categoryProduct) {
-      console.warn(` ⚠️ Nenhum produto encontrado para a categoria "${category.name}"`)
+      console.warn(
+        `⚠️ Nenhum produto encontrado para a categoria "${category.name}"`,
+      );
     }
 
     return {
@@ -170,9 +194,6 @@ export default function Home() {
 
   /*
    * Alterna o filtro.
-   *
-   * Se clicar novamente no mesmo botão,
-   * o filtro é removido.
    */
   const toggleFilter = (filter: ProductFilter) => {
     setSelectedFilter((current) =>
@@ -188,8 +209,6 @@ export default function Home() {
     setSelectedFilter(null);
   };
 
-  console.log(categoryCards);
-
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <View style={styles.container}>
@@ -202,11 +221,13 @@ export default function Home() {
             )!;
 
             return (
-              <ProductCard
-                product={item}
-                owner={owner}
-                onPress={() => openProduct(item)}
-              />
+              <View style={styles.productItem}>
+                <ProductCard
+                  product={item}
+                  owner={owner}
+                  onPress={() => openProduct(item)}
+                />
+              </View>
             );
           }}
           contentContainerStyle={styles.listContent}
@@ -214,190 +235,196 @@ export default function Home() {
           ListHeaderComponent={
             <>
               {/* Header */}
+
               <View style={styles.header}>
                 <Text style={styles.greeting}>
                   Olá, {currentUser.name.split(" ")[0]} 👋
                 </Text>
 
                 <Text style={styles.subtitle}>
-                  Veja quais produtos foram anunciados hoje!
-                </Text>
-              </View>
-
-              {/* Categorias */}
-              <View style={styles.categorySection}>
-                <Text style={styles.sectionTitle}>
-                  Categorias
+                  Veja quais produtos foram anunciados hoje!<Text style={styles.emoji}>📦</Text>
                 </Text>
 
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.categoryList}
-                  nestedScrollEnabled
-                >
-                  {/* Expressão -> pedaço de código que é avaliado e resulta em um valor */}
-                  {/* Declaração -> instrução que define algo, uma variável ou função */}
-
-                  {categoryCards.map((item) => {
-                    const isSelected =
-                      selectedCategoryId === item.id;
-
-                    return (
-                      <Pressable
-                        key={item.id}
-                        style={[
-                          styles.categoryCard,
-                          isSelected &&
-                            styles.categoryCardSelected,
-                        ]}
-                        onPress={() => {
-                          setSelectedCategoryId((current) =>
-                            current === item.id
-                              ? null
-                              : item.id,
-                          );
-                        }}
-                      >
-                        {item.image ? (
-                          <Image
-                            source={item.image}
-                            style={styles.categoryImage}
-                          />
-                        ) : (
-                          <View
-                            style={
-                              styles.categoryImagePlaceholder
-                            }
-                          >
-                            <Text
-                              style={
-                                styles.categoryPlaceholderText
-                              }
-                            >
-                              📦
-                            </Text>
-                          </View>
-                        )}
-
-                        <Text
-                          style={[
-                            styles.categoryName,
-                            isSelected &&
-                              styles.categoryNameSelected,
-                          ]}
-                          numberOfLines={1}
-                        >
-                          {item.name}
-                        </Text>
-                      </Pressable>
-                    );
-                  })}
-                </ScrollView>
               </View>
 
-              {/* Filtros */}
-              <View style={styles.exploreSection}>
-                <Text style={styles.sectionTitle}>
-                  Explorar
-                </Text>
+              {/* Conteúdo interno abaixo do header */}
 
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.filterList}
-                  nestedScrollEnabled
-                >
-                  <Pressable
-                    style={[
-                      styles.filterButton,
-                      selectedFilter === "today" &&
-                        styles.filterButtonSelected,
-                    ]}
-                    onPress={() =>
-                      toggleFilter("today")
-                    }
-                  >
-                    <Text
-                      style={[
-                        styles.filterButtonText,
-                        selectedFilter === "today" &&
-                          styles.filterButtonTextSelected,
-                      ]}
-                    >
-                      Lançados hoje
-                    </Text>
-                  </Pressable>
+              <View style={styles.contentSection}>
+                {/* Categorias */}
 
-                  <Pressable
-                    style={[
-                      styles.filterButton,
-                      selectedFilter === "featured" &&
-                        styles.filterButtonSelected,
-                    ]}
-                    onPress={() =>
-                      toggleFilter("featured")
-                    }
-                  >
-                    <Text
-                      style={[
-                        styles.filterButtonText,
-                        selectedFilter === "featured" &&
-                          styles.filterButtonTextSelected,
-                      ]}
-                    >
-                      Destaques
-                    </Text>
-                  </Pressable>
-
-                  <Pressable
-                    style={[
-                      styles.filterButton,
-                      selectedFilter === "trusted" &&
-                        styles.filterButtonSelected,
-                    ]}
-                    onPress={() =>
-                      toggleFilter("trusted")
-                    }
-                  >
-                    <Text
-                      style={[
-                        styles.filterButtonText,
-                        selectedFilter === "trusted" &&
-                          styles.filterButtonTextSelected,
-                      ]}
-                    >
-                      Usuários confiáveis
-                    </Text>
-                  </Pressable>
-                </ScrollView>
-              </View>
-
-              {/* Cabeçalho dos produtos */}
-              <View style={styles.productsHeader}>
-                <View style={styles.productsTitleContainer}>
+                <View style={styles.categorySection}>
                   <Text style={styles.sectionTitle}>
-                    {selectedCategoryName ??
-                      selectedFilterName ??
-                      "Todos os produtos"}
+                    Categorias
                   </Text>
 
-                  {selectedCategoryName &&
-                    selectedFilterName && (
-                      <Text style={styles.activeFilterText}>
-                        {selectedFilterName}
-                      </Text>
-                    )}
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.categoryList}
+                    nestedScrollEnabled
+                  >
+                    {categoryCards.map((item) => {
+                      const isSelected =
+                        selectedCategoryId === item.id;
+
+                      return (
+                        <Pressable
+                          key={item.id}
+                          style={[
+                            styles.categoryCard,
+                            isSelected &&
+                              styles.categoryCardSelected,
+                          ]}
+                          onPress={() => {
+                            setSelectedCategoryId((current) =>
+                              current === item.id
+                                ? null
+                                : item.id,
+                            );
+                          }}
+                        >
+                          {item.image ? (
+                            <Image
+                              source={item.image}
+                              style={styles.categoryImage}
+                            />
+                          ) : (
+                            <View
+                              style={
+                                styles.categoryImagePlaceholder
+                              }
+                            >
+                              <Text
+                                style={
+                                  styles.categoryPlaceholderText
+                                }
+                              >
+                                📦
+                              </Text>
+                            </View>
+                          )}
+
+                          <Text
+                            style={[
+                              styles.categoryName,
+                              isSelected &&
+                                styles.categoryNameSelected,
+                            ]}
+                            numberOfLines={1}
+                          >
+                            {item.name}
+                          </Text>
+                        </Pressable>
+                      );
+                    })}
+                  </ScrollView>
                 </View>
 
-                {(selectedCategoryId ||
-                  selectedFilter) && (
-                  <Pressable onPress={clearFilters}>
-                    <Text style={styles.clearFilter}>
-                      Limpar
+                {/* Filtros */}
+
+                <View style={styles.exploreSection}>
+                  <Text style={styles.sectionTitle}>
+                    Explorar
+                  </Text>
+
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.filterList}
+                    nestedScrollEnabled
+                  >
+                    <Pressable
+                      style={[
+                        styles.filterButton,
+                        selectedFilter === "today" &&
+                          styles.filterButtonSelected,
+                      ]}
+                      onPress={() =>
+                        toggleFilter("today")
+                      }
+                    >
+                      <Text
+                        style={[
+                          styles.filterButtonText,
+                          selectedFilter === "today" &&
+                            styles.filterButtonTextSelected,
+                        ]}
+                      >
+                        Lançados hoje
+                      </Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={[
+                        styles.filterButton,
+                        selectedFilter === "featured" &&
+                          styles.filterButtonSelected,
+                      ]}
+                      onPress={() =>
+                        toggleFilter("featured")
+                      }
+                    >
+                      <Text
+                        style={[
+                          styles.filterButtonText,
+                          selectedFilter === "featured" &&
+                            styles.filterButtonTextSelected,
+                        ]}
+                      >
+                        Destaques
+                      </Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={[
+                        styles.filterButton,
+                        selectedFilter === "trusted" &&
+                          styles.filterButtonSelected,
+                      ]}
+                      onPress={() =>
+                        toggleFilter("trusted")
+                      }
+                    >
+                      <Text
+                        style={[
+                          styles.filterButtonText,
+                          selectedFilter === "trusted" &&
+                            styles.filterButtonTextSelected,
+                        ]}
+                      >
+                        Usuários confiáveis
+                      </Text>
+                    </Pressable>
+                  </ScrollView>
+                </View>
+
+                {/* Cabeçalho dos produtos */}
+
+                <View style={styles.productsHeader}>
+                  <View style={styles.productsTitleContainer}>
+                    <Text style={styles.sectionTitle}>
+                      {selectedCategoryName ??
+                        selectedFilterName ??
+                        "Todos os produtos"}
                     </Text>
-                  </Pressable>
-                )}
+
+                    {selectedCategoryName &&
+                      selectedFilterName && (
+                        <Text style={styles.activeFilterText}>
+                          {selectedFilterName}
+                        </Text>
+                      )}
+                  </View>
+
+                  {(selectedCategoryId ||
+                    selectedFilter) && (
+                    <Pressable onPress={clearFilters}>
+                      <Text style={styles.clearFilter}>
+                        Limpar
+                      </Text>
+                    </Pressable>
+                  )}
+                </View>
               </View>
             </>
           }
@@ -416,6 +443,7 @@ export default function Home() {
         />
 
         {/* Modal de proposta de troca */}
+
         <ProductTradeModal
           visible={selectedProduct !== null}
           targetProduct={selectedProduct}
@@ -440,29 +468,69 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  /*
+   * O FlatList possui paddingHorizontal.
+   *
+   * Por isso o header precisa:
+   * 1. voltar Spacing.four para a esquerda;
+   * 2. voltar Spacing.four para a direita;
+   * 3. aumentar sua largura em 2 * Spacing.four.
+   *
+   * Dessa forma ele ocupa a largura real da tela.
+   */
+
   header: {
-    paddingTop: Spacing.three,
-    paddingBottom: Spacing.two,
+    width: "100%",
+    backgroundImage:
+      'linear-gradient(160deg, rgb(0, 73, 218) 0%, rgb(0, 102, 255) 55%, rgb(14, 153, 252) 100%)',
+    paddingHorizontal: Spacing.four,
+    paddingTop: Spacing.four,
+    paddingBottom: Spacing.four,
     gap: Spacing.half,
   },
 
   greeting: {
     ...typography.h2,
-    color: Colors.text,
+    color: Colors.terciaryText,
   },
 
   subtitle: {
+    paddingTop: Spacing.half,
     ...typography.body,
-    color: Colors.textMuted,
+    color: Colors.terciaryText,
+    opacity: 0.65,
+  },
+
+  emoji: {
+    opacity: 1,
+  },
+
+  /*
+   * Tudo abaixo do header continua respeitando
+   * o padding horizontal do FlatList.
+   *
+   * Isso mantém os cards centralizados/alinhados.
+   */
+
+  contentSection: {
+    paddingHorizontal: Spacing.four,
   },
 
   categorySection: {
     marginTop: Spacing.four,
   },
 
+  productItem: {
+    paddingHorizontal: Spacing.four,
+  },  
+
   sectionTitle: {
     ...typography.h3,
     color: Colors.text,
+    // adiciona sombra leve À letra para dar destaque
+    textShadowColor: "rgba(0, 0, 0, 0.01)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 0.00009,
   },
 
   categoryList: {
@@ -510,10 +578,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 
-  /* ─────────────────────────────────────────────
-     Explorar / filtros
-  ───────────────────────────────────────────── */
-
   exploreSection: {
     marginTop: Spacing.two,
   },
@@ -548,10 +612,6 @@ const styles = StyleSheet.create({
     color: Colors.surface,
   },
 
-  /* ─────────────────────────────────────────────
-     Produtos
-  ───────────────────────────────────────────── */
-
   productsHeader: {
     flexDirection: "row",
     alignItems: "center",
@@ -578,13 +638,8 @@ const styles = StyleSheet.create({
   },
 
   listContent: {
-    paddingHorizontal: Spacing.four,
     paddingBottom: Spacing.six,
   },
-
-  /* ─────────────────────────────────────────────
-     Empty state
-  ───────────────────────────────────────────── */
 
   emptyContainer: {
     alignItems: "center",
@@ -603,3 +658,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.four,
   },
 });
+

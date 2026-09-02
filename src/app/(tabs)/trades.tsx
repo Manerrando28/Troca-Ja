@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { users, products, negotiations as mockNegotiations, CURRENT_USER_ID } from '@/data';
+import {
+  users,
+  products,
+  negotiations as mockNegotiations,
+  CURRENT_USER_ID,
+} from '@/data';
 import type { Negotiation } from '@/types';
 import { Colors, Spacing, typography } from '@/tokens/theme';
 import OfferCard from '@/components/TradeCard'; // We renamed the component internally, kept file
@@ -12,23 +17,38 @@ import OfferCard from '@/components/TradeCard'; // We renamed the component inte
  * Mostra ofertas direcionadas ao currentUser.
  */
 export default function Trades() {
-  const [negotiationsList, setNegotiationsList] = useState<Negotiation[]>(mockNegotiations);
+  const [negotiationsList, setNegotiationsList] =
+    useState<Negotiation[]>(mockNegotiations);
 
   // Filtra ofertas pendentes onde o usuário atual é o RECEPTOR
   const incomingOffers = negotiationsList.filter(
-    (n) => n.receiverId === CURRENT_USER_ID && n.status === 'pending'
+    (n) =>
+      n.receiverId === CURRENT_USER_ID &&
+      n.status === 'pending'
   );
 
   const handleAccept = (id: string) => {
     setNegotiationsList((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, status: 'accepted' } : n))
+      prev.map((n) =>
+        n.id === id
+          ? { ...n, status: 'accepted' }
+          : n
+      )
     );
-    Alert.alert('Aceita!', 'A proposta foi aceita. Acesse a aba Negociações para conversar.');
+
+    Alert.alert(
+      'Aceita!',
+      'A proposta foi aceita. Acesse a aba Negociações para conversar.'
+    );
   };
 
   const handleReject = (id: string) => {
     setNegotiationsList((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, status: 'rejected' } : n))
+      prev.map((n) =>
+        n.id === id
+          ? { ...n, status: 'rejected' }
+          : n
+      )
     );
   };
 
@@ -37,6 +57,7 @@ export default function Trades() {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>Ofertas Recebidas</Text>
+
           <Text style={styles.subtitle}>
             Propostas de troca para os seus produtos
           </Text>
@@ -46,10 +67,14 @@ export default function Trades() {
           data={incomingOffers}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
-            const owner = users.find((u) => u.id === item.initiatorId)!;
+            const owner = users.find(
+              (u) => u.id === item.initiatorId
+            )!;
+
             const offeredProducts = products.filter((p) =>
               item.offeredProductIds.includes(p.id)
             );
+
             const requestedProducts = products.filter((p) =>
               item.requestedProductIds.includes(p.id)
             );
@@ -70,6 +95,7 @@ export default function Trades() {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyEmoji}>📬</Text>
+
               <Text style={styles.emptyText}>
                 Nenhuma oferta recebida no momento.
               </Text>
@@ -86,36 +112,48 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+
   container: {
     flex: 1,
   },
+
   header: {
     paddingHorizontal: Spacing.four,
-    paddingTop: Spacing.three,
-    paddingBottom: Spacing.two,
+    paddingTop: Spacing.four,
+    paddingBottom: Spacing.four,
+    marginBottom: Spacing.three,
     gap: Spacing.half,
+
+    backgroundImage:
+      'linear-gradient(160deg, rgb(0, 73, 218) 0%, rgb(0, 102, 255) 55%, rgb(14, 153, 252) 100%)',
   },
+
   title: {
     ...typography.h2,
-    color: Colors.text,
+    color: '#FFFFFF',
   },
+
   subtitle: {
     ...typography.body,
-    color: Colors.textMuted,
+    color: 'rgba(255, 255, 255, 0.78)',
   },
+
   listContent: {
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.two,
     paddingBottom: Spacing.six,
   },
+
   emptyContainer: {
     alignItems: 'center',
     paddingTop: 80,
     gap: Spacing.two,
   },
+
   emptyEmoji: {
     fontSize: 48,
   },
+
   emptyText: {
     ...typography.body,
     color: Colors.textMuted,

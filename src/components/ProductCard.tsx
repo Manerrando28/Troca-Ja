@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   ownerName: {
     ...typography.caption,
-    color: Colors.primary,
+    color: Colors.text,
     fontWeight: '600',
   },
 });

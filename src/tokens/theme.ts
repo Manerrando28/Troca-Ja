@@ -8,17 +8,18 @@
 import { Platform } from 'react-native';
 
 export const Colors = {
-  primary: '#1c558d',
+  primary: '#0066FF',
   secondary: '#0172bd',
-  background: '#f5f5f5',
+  background: '#f8f8f8',
   surface: '#ffffff',
-  button: "#0090f0",
-  text: '#0a4d90',
+  button: '#0090f0',
+  text: '#125cca',
   secondaryText: '#1d1d1d',
+  terciaryText: '#ffffff',
   textMuted: '#757575',
   error: '#E53935',
   success: '#43A047',
-  buttonText: "#E0E0E0",
+  buttonText: '#E0E0E0',
   border: '#E0E0E0',
 
   light: {
@@ -28,6 +29,7 @@ export const Colors = {
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
   },
+
   dark: {
     text: '#ffffff',
     background: '#000000',
@@ -39,30 +41,12 @@ export const Colors = {
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+export const Fonts = {
+  regular: 'Inter_400Regular',
+  medium: 'Inter_500Medium',
+  semibold: 'Inter_600SemiBold',
+  bold: 'Inter_700Bold',
+} as const;
 
 export const Spacing = {
   half: 2,
@@ -75,12 +59,35 @@ export const Spacing = {
 } as const;
 
 export const typography = {
-  h1: { fontSize: 28, fontWeight: '700' as const },
-  h2: { fontSize: 22, fontWeight: '600' as const },
-  h3: { fontSize: 18, fontWeight: '600' as const },
-  body: { fontSize: 14, fontWeight: '500' as const },
-  caption: { fontSize: 12, fontWeight: '400' as const },
+  h1: {
+    fontFamily: Fonts.bold,
+    fontSize: 28,
+  },
+
+  h2: {
+    fontFamily: Fonts.semibold,
+    fontSize: 22,
+  },
+
+  h3: {
+    fontFamily: Fonts.semibold,
+    fontSize: 18,
+  },
+
+  body: {
+    fontFamily: Fonts.medium,
+    fontSize: 14,
+  },
+
+  caption: {
+    fontFamily: Fonts.regular,
+    fontSize: 12,
+  },
 };
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
+export const BottomTabInset = Platform.select({
+  ios: 50,
+  android: 80,
+}) ?? 0;
+
 export const MaxContentWidth = 800;
