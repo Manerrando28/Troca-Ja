@@ -1,3 +1,13 @@
+# Integrantes
+
+Fernando Carlos Colque Huaranca RM558095
+
+Gabriel Guilherme Leste RM558638
+
+Gabriel Lacerda Araújo RM558307
+
+Julia Carolina Ferreira Silva RM558896
+
 # TrocaJá
 
 Aplicativo mobile de **trocas de produtos entre usuários**, desenvolvido com React Native e Expo.
@@ -7,6 +17,23 @@ O TrocaJá permite que usuários anunciem produtos disponíveis para troca, envi
 > **Status:** protótipo funcional com dados mockados. Autenticação real, persistência e comunicação com servidor ainda não estão implementadas.
 
 ---
+
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/066547a2-a91a-4898-875d-20b2be84286b" width="270" alt="Tela 1">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/9aeea30a-466e-4c73-92b1-426c7046fbca" width="270" alt="Tela 2">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/8c9f327d-0004-408a-837a-0ef49ee853f1" width="270" alt="Tela 3">
+<br><br>
+<img src="https://github.com/user-attachments/assets/1584469c-0ab1-4cac-8510-e132005d1c79" width="270" alt="Tela 4">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/206c0420-bdf0-4aec-b2ec-b0e708f93614" width="270" alt="Tela 5">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/dce3b0ae-9c24-45ac-993a-3b9ba0ef09cb" width="270" alt="Tela 6">
+
+</div>
+
 
 ## Funcionalidades
 
@@ -192,7 +219,7 @@ Os dados são relacionados por IDs, seguindo os tipos definidos em `src/types.ts
 
 ## Modelo de dados
 
-As principais entidades do projeto são:
+As principais entidades do projeto estruturam-se da seguinte forma:
 
 ```text
 User
@@ -218,12 +245,10 @@ Message
 
 Os status de uma negociação são:
 
-```text
-pending
-accepted
-rejected
-cancelled
-```
+- `pending` — Proposta enviada, aguardando resposta.
+- `accepted` — Proposta aceita, chat liberado entre os participantes.
+- `rejected` — Proposta recusada pelo receptor.
+- `cancelled` — Negociação cancelada pelo iniciador.
 
 ---
 
