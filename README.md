@@ -26,7 +26,8 @@ O TrocaJá permite que usuários anunciem produtos disponíveis para troca, envi
 <img src="https://i.imgur.com/fk3jNXn.png" width="200px" height="450px"/>
 <img src="https://i.imgur.com/zgG6K4N.png" width="200px" height="450px"/>
 <img src="https://i.imgur.com/N1fsL0l.png" width="200px" height="450px"/>
-<img src="https://i.imgur.com/JNUULok.png" width="200px" height="450px">
+<img src="https://i.imgur.com/JNUULok.png" width="200px" height="450px"/>
+<img src="https://i.imgur.com/BQerzHo.png" width="200px" height="450px"/>
 
 
 </div>
