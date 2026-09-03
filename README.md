@@ -18,19 +18,20 @@ O TrocaJá permite que usuários anunciem produtos disponíveis para troca, envi
 
 ---
 
-<div align="center">
+<div>
 
-<img src="https://github.com/user-attachments/assets/066547a2-a91a-4898-875d-20b2be84286b" width="270" alt="Tela 1">
-&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/9aeea30a-466e-4c73-92b1-426c7046fbca" width="270" alt="Tela 2">
-&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/8c9f327d-0004-408a-837a-0ef49ee853f1" width="270" alt="Tela 3">
-<br><br>
-<img src="https://github.com/user-attachments/assets/1584469c-0ab1-4cac-8510-e132005d1c79" width="270" alt="Tela 4">
-&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/206c0420-bdf0-4aec-b2ec-b0e708f93614" width="270" alt="Tela 5">
-&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/dce3b0ae-9c24-45ac-993a-3b9ba0ef09cb" width="270" alt="Tela 6">
+## Capturas de tela
+<div style="display: flex; flex-direction: row; gap: 10px;">
+<img src="https://i.imgur.com/HVyHMlJ.png" width="200px" height="450px"/>
+<img src="https://i.imgur.com/fk3jNXn.png" width="200px" height="450px"/>
+<img src="https://i.imgur.com/zgG6K4N.png" width="200px" height="450px"/>
+<img src="https://i.imgur.com/N1fsL0l.png" width="200px" height="450px"/>
+<img src="https://i.imgur.com/JNUULok.png" width="200px" height="450px">
+
+
+</div>
+
+
 
 </div>
 
