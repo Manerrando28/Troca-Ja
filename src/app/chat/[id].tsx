@@ -12,7 +12,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useLocalSearchParams, Stack } from 'expo-router';
-import { users, products } from '@/data';
+import { users } from '@/data';
 import { useApp } from '@/state/AppProvider';
 import Notice from '@/components/ui/Notice';
 
@@ -23,7 +23,7 @@ export default function ChatScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  const { state: { negotiations, messages }, userId, sendMessage: appendMessage } = useApp();
+  const { state: { negotiations, messages }, products, userId, sendMessage: appendMessage } = useApp();
   const [error, setError] = useState('');
   // Encontrar negociação
   const negotiation = negotiations.find((n) => n.id === id);

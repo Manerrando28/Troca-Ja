@@ -6,7 +6,6 @@ import { useApp } from '@/state/AppProvider';
 
 import {
   users,
-  products,
 } from '@/data';
 
 import type { Negotiation } from '@/types';
@@ -26,7 +25,7 @@ import NegotiationCard from '@/components/NegotiationCard';
  */
 export default function Negotiations() {
   const router = useRouter();
-  const { state: { negotiations, messages }, userId } = useApp();
+  const { state: { negotiations, messages }, products, userId } = useApp();
 
   // Negociações aceitas onde o currentUser é parte
   const activeChats = negotiations.filter(

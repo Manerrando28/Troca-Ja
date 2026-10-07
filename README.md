@@ -23,7 +23,7 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 | Dados mockados coerentes | 4 usuários, 4 categorias, 8 produtos; relações por ID; imagens locais ou ícones quando não há foto correspondente |
 | Ambiente de testes | `npm run check`, Playwright e [roteiro manual](docs/TESTES.md) |
 | Documentação | [Fluxos](docs/FLUXOS.md), [decisões técnicas](docs/DECISOES-TECNICAS.md), este README |
-| Banco Supabase/Firebase | Consulta REST de categorias + SQL/RLS; **ativação remota pendente**, ver [configuração](docs/SUPABASE.md) |
+| Banco Supabase/Firebase | Consulta REST de produtos e categorias + SQL/RLS e importação; **ativação remota pendente**, ver [guia passo a passo](docs/SUPABASE.md) |
 | Simulação comprovada | 7 capturas locais e teste completo entre dois participantes no Edge, viewport 390×844 |
 
 O APK instalável pertence ao **CP6**. O documento do CP5 aceita prints ou vídeo como evidência; as capturas abaixo registram esta versão. Nenhum APK ou vídeo foi publicado nesta etapa.
@@ -91,9 +91,9 @@ O teste gera sete capturas em `docs/evidencias/`. `npm run check` executa TypeSc
 
 ## Banco de dados
 
-Siga [SUPABASE.md](docs/SUPABASE.md): execute `supabase/schema.sql`, copie `.env.example` para `.env.local` e informe a URL/chave publishable reais. A Home passa a consultar categorias no banco. Sem configuração, usa mocks e indica esse estado no Perfil. Falha de conexão mostra aviso e nova tentativa; não finge conexão bem-sucedida.
+Siga o [guia para iniciantes](docs/SUPABASE.md): crie o projeto, execute `supabase/schema.sql` e `supabase/seed.sql` no SQL Editor para importar os oito produtos, envie as fotos ao Storage e configure `.env.local`. Home, Perfil, propostas e conversas passam a usar o catálogo recebido do banco. Sem configuração, usa mocks e indica esse estado no Perfil. Com configuração remota, falhas mostram aviso e nova tentativa, sem substituir os produtos por mocks.
 
-A integração desta etapa é **leitura do catálogo de categorias**. Propostas, mensagens e contas continuam em memória. A chave pública usa permissões de leitura e RLS; nunca inclua chaves secretas ou `service_role` no app.
+A integração desta etapa é **leitura de produtos e categorias**. Propostas, mensagens e contas continuam em memória. No modo remoto, propostas e mensagens começam vazias; novas negociações duram até recarregar o app. Produtos podem ser cadastrados e editados pelo Table Editor do Supabase. A chave pública usa permissões de leitura e RLS; nunca inclua chaves secretas ou `service_role` no app.
 
 ## Arquitetura e Design System
 
@@ -103,12 +103,13 @@ src/
   components/           Cards, modal e filtros reutilizáveis
     ui/                 Button, Avatar, PageHeader, Notice e EmptyState
   domain/trades.ts      Validações, transições e filtros puros
-  state/AppProvider.tsx Sessão fictícia e estado compartilhado
-  services/catalog.ts  Adaptador REST do Supabase
+  state/AppProvider.tsx Sessão fictícia, catálogo e estado compartilhado
+  services/catalog.ts  REST paginado, validação e conversão dos produtos remotos
   tokens/theme.ts      Cores, Inter, espaçamentos, raios e gradiente
   data.ts              Mocks relacionados por ID
   types.ts             Entidades TypeScript
-supabase/schema.sql    Tabela, seed e políticas de leitura
+supabase/schema.sql    Tabelas, categorias iniciais e políticas de leitura
+supabase/seed.sql      Importação dos oito produtos, preservando edições existentes
 tests/                 Testes de domínio, contrato e navegador
 docs/                  Fluxos, decisões, testes e evidências
 ```
@@ -119,9 +120,9 @@ O tema centraliza as cores usadas pelas telas. Cabeçalhos e feedback visual usa
 
 ## Decisões e próximos passos
 
-A seleção explícita de contas permite validar os dois lados de uma troca sem simular uma autenticação de produção. Context API mantém as abas sincronizadas. Regras puras protegem o domínio e são verificáveis sem emulador. A integração pública de categorias permite demonstrar leitura real do banco sem expor conversas fictícias para escrita pública.
+A seleção explícita de contas permite validar os dois lados de uma troca sem simular uma autenticação de produção. Context API mantém as abas sincronizadas, incluindo os produtos usados para validar propostas. Regras puras protegem o domínio e são verificáveis sem emulador. A integração pública de produtos e categorias permite demonstrar leitura real do banco; conversas continuam locais.
 
-Para o CP6: autenticação real, persistência de produtos/propostas/mensagens com RLS por participante, cadastro/edição de produtos, finalização da troca, testes em Android, manual final e build de APK. Mais detalhes em [decisões técnicas](docs/DECISOES-TECNICAS.md).
+Para o CP6: autenticação real, persistência de propostas/mensagens com RLS por participante, cadastro/edição de produtos pelo app, finalização da troca, testes em Android, manual final e build de APK. Mais detalhes em [decisões técnicas](docs/DECISOES-TECNICAS.md).
 
 ## Publicação e entrega
 

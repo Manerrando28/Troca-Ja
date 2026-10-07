@@ -6,6 +6,7 @@
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo/ui": "~57.0.13",
     "@expo/vector-icons": "^15.0.2",
+    "@supabase/supabase-js": "^2.117.3",
     "expo": "~57.0.16",
     "expo-constants": "~57.0.14",
     "expo-device": "~57.0.1",
@@ -52,6 +53,7 @@
     "check": "npm run typecheck && npm run lint && npm test",
     "export:web": "expo export --platform web",
     "test:e2e": "npm run export:web && playwright test",
+    "test:e2e:supabase": "node scripts/test-supabase.cjs",
     "preview": "node scripts/serve-web.cjs"
   },
   "private": true

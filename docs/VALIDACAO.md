@@ -1,5 +1,20 @@
 # Registro de validação — 07/10/2026
 
+## Atualização: produtos no Supabase
+
+Refatoração validada no Windows com Node **24.19.0** e Microsoft Edge. O Node 22.11 do sistema é anterior ao requisito do projeto; os executáveis de TypeScript, ESLint e testes foram chamados com o runtime Node 24.
+
+- TypeScript (`tsc --noEmit`) e ESLint aprovados.
+- 16 testes de domínio/contrato aprovados: incluem mapeamento dos produtos, imagens por URL, paginação, campos inválidos, relacionamentos, falha HTTP/rede e cancelamento.
+- Exportação web do modo Supabase aprovada com cache limpo.
+- `test:e2e:supabase`: 3 cenários aprovados no Edge com API interceptada: produtos novos em Home/Perfil/propostas/chat; banco vazio; falha HTTP e recuperação por nova tentativa. O fluxo completo monitora erros de execução do navegador.
+- Modo local reexportado com cache limpo e 1 cenário existente aprovado no Edge: busca vazia, cancelamento e recusa. As capturas anteriores não foram sobrescritas.
+- Guia, schema e seed para os oito produtos entregues. SQL e Storage ainda precisam ser executados/validados em um projeto real; nenhuma credencial real foi fornecida.
+
+Os resultados abaixo registram a validação anterior do protótipo local e suas capturas, preservadas nesta refatoração.
+
+## Registro anterior
+
 Ambiente: Windows, Node 24.16.0, Microsoft Edge via Playwright, viewport 390×844. Foram utilizadas somente contas e dados fictícios.
 
 | Verificação | Resultado |

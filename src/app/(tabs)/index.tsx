@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import { useState } from 'react';
 import { FlatList, View, Text, TextInput, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { products, users } from '@/data';
+import { users } from '@/data';
 import type { Product, Negotiation } from '@/types';
 import { useApp } from '@/state/AppProvider';
 import { filterProducts, type ProductFilter } from '@/domain/trades';
@@ -16,7 +16,7 @@ import Notice from '@/components/ui/Notice';
 import Button from '@/components/ui/Button';
 
 export default function Home() {
-  const { userId, propose, categories, catalogStatus, catalogError, retryCatalog } = useApp();
+  const { userId, propose, products, categories, catalogStatus, catalogError, retryCatalog } = useApp();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [filter, setFilter] = useState<ProductFilter>(null);
@@ -48,7 +48,7 @@ export default function Home() {
           <CatalogFilters categories={categories} categoryId={categoryId} filter={filter}
             onCategory={setCategoryId} onFilter={setFilter} />
           <Text style={styles.count}>{filtered.length} {filtered.length === 1 ? 'produto disponível' : 'produtos disponíveis'}</Text>
-          {catalogStatus === 'loading' && <Notice message="Carregando categorias do Supabase…" />}
+          {catalogStatus === 'loading' && <Notice message="Carregando produtos do Supabase…" />}
           {catalogStatus === 'error' && <><Notice error message={catalogError ?? 'Falha no catálogo.'} />
             <Button title="Tentar novamente" variant="secondary" onPress={retryCatalog} /></>}
           {!!notice && <Notice message={notice} />}
@@ -57,7 +57,10 @@ export default function Home() {
       renderItem={({ item }) => <View style={styles.item}><ProductCard product={item}
         owner={users.find(u => u.id === item.ownerId)!}
         onPress={() => { setError(''); setSelectedProduct(item); }} /></View>}
-      ListEmptyComponent={<EmptyState message="Nenhum produto encontrado. Altere a busca ou limpe os filtros." />} />
+      ListEmptyComponent={catalogStatus === 'loading' || catalogStatus === 'error' ? null :
+        <EmptyState message={catalogStatus === 'connected' && products.length === 0
+          ? 'Nenhum produto cadastrado. Volte mais tarde para ver novos produtos.'
+          : 'Nenhum produto encontrado. Altere a busca ou limpe os filtros.'} />} />
     {selectedProduct && <ProductTradeModal key={selectedProduct.id} visible targetProduct={selectedProduct}
       targetUser={users.find(u => u.id === selectedProduct.ownerId) ?? null}
       currentUserProducts={products.filter(p => p.ownerId === currentUser.id)} currentUser={currentUser}

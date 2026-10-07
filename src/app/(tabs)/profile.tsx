@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useApp } from '@/state/AppProvider';
-import { users, products } from '@/data';
+import { users } from '@/data';
 import type { Product } from '@/types';
 import { Colors, Fonts, typography } from '@/tokens/theme';
 import Avatar from '@/components/ui/Avatar';
@@ -11,7 +11,7 @@ import ProductCard from '@/components/ProductCard';
 import PageHeader from '@/components/ui/PageHeader';
 import Button from '@/components/ui/Button';
 export default function Profile() {
-  const { userId, logout, catalogStatus } = useApp();
+  const { userId, logout, products, catalogStatus } = useApp();
   const [detail, setDetail] = useState<Product | null>(null);
   const user = users.find(u => u.id === userId);
   if (!user) return null;
@@ -27,7 +27,7 @@ export default function Profile() {
         </View>
         <Text style={styles.section}>Meus produtos</Text>
         {mine.map(product => <ProductCard key={product.id} product={product} owner={user} onPress={() => setDetail(product)} />)}
-        <View style={styles.connection}><Feather name={catalogStatus === 'connected' ? 'check-circle' : 'database'} size={16} color={Colors.accent} /><Text style={styles.connectionText}>{catalogStatus === 'connected' ? 'Categorias conectadas ao Supabase.' : catalogStatus === 'error' ? 'Supabase indisponível. Categorias locais em uso.' : catalogStatus === 'loading' ? 'Conectando ao catálogo…' : 'Catálogo local de demonstração. Supabase não configurado.'}</Text></View>
+        <View style={styles.connection}><Feather name={catalogStatus === 'connected' ? 'check-circle' : 'database'} size={16} color={Colors.accent} /><Text style={styles.connectionText}>{catalogStatus === 'connected' ? 'Produtos e categorias conectados ao Supabase.' : catalogStatus === 'error' ? 'Não foi possível carregar o catálogo. Tente novamente na Home.' : catalogStatus === 'loading' ? 'Conectando ao catálogo…' : 'Catálogo local de demonstração. Supabase não configurado.'}</Text></View>
         <Button title="Sair da conta" variant="secondary" onPress={logout} />
       </View>
     </ScrollView>

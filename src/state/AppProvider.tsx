@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import * as seed from '@/data';
-import type { Category, Negotiation } from '@/types';
+import type { Category, Product, Negotiation } from '@/types';
 import { applyTradeAction, type TradeAction, type TradeState } from '@/domain/trades';
-import { fetchCategories } from '@/services/catalog';
+import { fetchCatalog } from '@/services/catalog';
 import { authenticateDemo } from '@/domain/auth';
 
 type AppContextValue = {
@@ -14,6 +14,7 @@ type AppContextValue = {
   respond: (id: string, status: 'accepted' | 'rejected' | 'cancelled') => void;
   sendMessage: (id: string, text: string) => void;
   categories: Category[];
+  products: Product[];
   catalogStatus: 'mock' | 'loading' | 'connected' | 'error';
   catalogError: string | null;
   retryCatalog: () => void;
@@ -21,48 +22,52 @@ type AppContextValue = {
 const AppContext = createContext<AppContextValue | null>(null);
 let sequence = 0;
 const nextId = (prefix: string) => `${prefix}-${Date.now()}-${++sequence}`;
-const catalogUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const catalogKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const catalogUrl = process.env.EXPO_PUBLIC_SUPABASE_URL?.trim();
+const catalogKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.trim();
 const initialCatalogStatus = catalogUrl && catalogKey ? 'loading' : catalogUrl || catalogKey ? 'error' : 'mock';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string | null>(null);
-  const [state, setState] = useState<TradeState>({ negotiations: seed.negotiations, messages: seed.messages });
+  const [state, setState] = useState<TradeState>(initialCatalogStatus === 'mock'
+    ? { negotiations: seed.negotiations, messages: seed.messages } : { negotiations: [], messages: [] });
   const stateRef = useRef(state);
-  const [categories, setCategories] = useState(seed.categories);
+  const [categories, setCategories] = useState<Category[]>(initialCatalogStatus === 'mock' ? seed.categories : []);
+  const [products, setProducts] = useState<Product[]>(initialCatalogStatus === 'mock' ? seed.products : []);
   const [catalogStatus, setCatalogStatus] = useState<AppContextValue['catalogStatus']>(initialCatalogStatus);
   const [catalogError, setCatalogError] = useState<string | null>(initialCatalogStatus === 'error'
-    ? 'Configuração incompleta do Supabase. Usando categorias locais.' : null);
+    ? 'Configuração incompleta do Supabase. Preencha as duas variáveis em .env.local e reinicie o Expo.' : null);
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     if (!catalogUrl || !catalogKey) return;
     const controller = new AbortController();
     let active = true;
     const timeout = setTimeout(() => controller.abort(), 10000);
-    fetchCategories(catalogUrl, catalogKey, controller.signal).then(rows => {
+    fetchCatalog(catalogUrl, catalogKey, seed.users.map(user => user.id), controller.signal).then(catalog => {
       if (!active) return;
-      if (!seed.products.every(p => rows.some(c => c.id === p.categoryId))) {
-        throw new Error('Faltam categorias dos produtos mockados. Execute o seed completo.');
-      }
-      setCategories(rows);
+      setCategories(catalog.categories);
+      setProducts(catalog.products);
+      setCatalogError(null);
       setCatalogStatus('connected');
-    }).catch(() => {
+    }).catch(cause => {
       if (!active) return;
-      setCategories(seed.categories);
+      const timedOut = controller.signal.aborted;
+      controller.abort(); // Encerra a outra consulta se apenas uma delas falhou.
       setCatalogStatus('error');
-      setCatalogError('Falha ao consultar Supabase. Usando categorias locais; confira a conexão e o seed.');
+      setCatalogError(timedOut ? 'O Supabase demorou mais de 10 segundos. Tente novamente.'
+        : cause instanceof Error ? cause.message : 'Falha ao consultar Supabase. Confira sua conexão.');
     }).finally(() => clearTimeout(timeout));
     return () => { active = false; clearTimeout(timeout); controller.abort(); };
   }, [attempt]);
 
   function commit(action: TradeAction) {
     if (!userId) throw new Error('Entre em uma conta de demonstração.');
-    const next = applyTradeAction(stateRef.current, action, seed.products);
+    if (catalogStatus === 'loading' || catalogStatus === 'error') throw new Error('Aguarde o catálogo carregar antes de continuar.');
+    const next = applyTradeAction(stateRef.current, action, products);
     stateRef.current = next;
     setState(next);
   }
   return <AppContext.Provider value={{
-    userId, state, categories, catalogStatus, catalogError,
+    userId, state, categories, products, catalogStatus, catalogError,
     retryCatalog: () => {
       if (!catalogUrl || !catalogKey) return;
       setCatalogStatus('loading');

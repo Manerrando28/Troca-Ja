@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { users, products } from '@/data';
+import { users } from '@/data';
 import { useApp } from '@/state/AppProvider';
 import { Colors, Spacing, typography } from '@/tokens/theme';
 import OfferCard from '@/components/TradeCard';
@@ -11,7 +11,7 @@ import Notice from '@/components/ui/Notice';
 import Button from '@/components/ui/Button';
 const statusLabels = { pending: 'Aguardando resposta', accepted: 'Aceita — chat disponível', rejected: 'Recusada', cancelled: 'Cancelada' };
 export default function Trades() {
-  const { state, userId, respond } = useApp();
+  const { state, products, userId, respond } = useApp();
   const [notice, setNotice] = useState('');
   const [error, setError] = useState(false);
   const mine = state.negotiations.filter(n => n.receiverId === userId || n.initiatorId === userId).slice().reverse();
