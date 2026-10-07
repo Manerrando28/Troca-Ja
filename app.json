@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "TrocaJá",
+    "slug": "troca-ja",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ui-images/logo.png",
+    "scheme": "trocaja",
+    "userInterfaceStyle": "light",
+    "ios": {},
+    "android": {
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "single",
+      "favicon": "./assets/ui-images/logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#208AEF",
+          "image": "./assets/ui-images/logo.png",
+          "imageWidth": 76
+        }
+      ],
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
