@@ -123,7 +123,3 @@ O tema centraliza as cores usadas pelas telas. Cabeçalhos e feedback visual usa
 A seleção explícita de contas permite validar os dois lados de uma troca sem simular uma autenticação de produção. Context API mantém as abas sincronizadas, incluindo os produtos usados para validar propostas. Regras puras protegem o domínio e são verificáveis sem emulador. A integração pública de produtos e categorias permite demonstrar leitura real do banco; conversas continuam locais.
 
 Para o CP6: autenticação real, persistência de propostas/mensagens com RLS por participante, cadastro/edição de produtos pelo app, finalização da troca, testes em Android, manual final e build de APK. Mais detalhes em [decisões técnicas](docs/DECISOES-TECNICAS.md).
-
-## Publicação e entrega
-
-Esta cópia foi recebida sem `.git`; histórico e URL do GitHub não puderam ser verificados. Publique o código e as evidências no repositório real do grupo e confirme os papéis antes de entregar. Use commits descritivos das mudanças reais, sem criar um histórico fictício. O formato de envio e prazo devem seguir a orientação da aula; não foram especificados no PDF para o CP5.
