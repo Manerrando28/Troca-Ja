@@ -1,5 +1,6 @@
-import { Pressable, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { Colors, Spacing, typography } from '@/tokens/theme';
+import InteractivePressable from './InteractivePressable';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger';
 
@@ -27,7 +28,7 @@ export default function Button({
   const isDisabled = disabled || loading;
 
   return (
-    <Pressable
+    <InteractivePressable
       accessibilityRole="button"
       accessibilityState={{ disabled: isDisabled, busy: loading }}
       accessibilityLabel={title}
@@ -48,7 +49,7 @@ export default function Button({
       ) : (
         <Text style={[styles.text, styles[`${variant}Text`]]}>{title}</Text>
       )}
-    </Pressable>
+    </InteractivePressable>
   );
 }
 

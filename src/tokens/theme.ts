@@ -32,6 +32,9 @@ export const Colors = {
   brandDark: '#0049DA',
   brandLight: '#0E99FC',
   transparent: 'transparent',
+  brandMist: '#EAF3FF',
+  mintMist: '#EDF8F5',
+  brandOrbit: 'rgba(0, 135, 125, 0.12)',
 
   light: {
     text: '#000000',

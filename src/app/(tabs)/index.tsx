@@ -10,7 +10,8 @@ import { Colors, Spacing, typography } from '@/tokens/theme';
 import ProductCard from '@/components/ProductCard';
 import ProductTradeModal from '@/components/ProductTradeModal';
 import CatalogFilters from '@/components/CatalogFilters';
-import PageHeader from '@/components/ui/PageHeader';
+import HomeHero from '@/components/HomeHero';
+import HomeBackdrop from '@/components/HomeBackdrop';
 import EmptyState from '@/components/ui/EmptyState';
 import Notice from '@/components/ui/Notice';
 import Button from '@/components/ui/Button';
@@ -38,9 +39,10 @@ export default function Home() {
     }
   }
   return <SafeAreaView style={styles.screen} edges={['top']}>
+    <HomeBackdrop />
     <FlatList data={filtered} keyExtractor={item => item.id} contentContainerStyle={styles.list}
       ListHeaderComponent={<>
-        <PageHeader title={`Olá, ${currentUser.name.split(' ')[0]}`} subtitle="Dê uma nova história aos seus produtos." />
+        <HomeHero name={currentUser.name.split(' ')[0]} />
         <View style={styles.controls}>
           <View style={[styles.searchBox, searchFocused && { borderColor: Colors.primary }]}><Feather name="search" size={19} color={Colors.textMuted} /><TextInput accessibilityLabel="Buscar produtos" placeholder="Buscar produtos" value={query}
             onFocus={() => setSearchFocused(true)} onBlur={() => setSearchFocused(false)}

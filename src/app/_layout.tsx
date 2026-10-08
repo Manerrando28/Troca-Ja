@@ -7,6 +7,7 @@ import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { AppProvider, useApp } from '@/state/AppProvider';
+import { MotionProvider } from '@/state/MotionProvider';
 SplashScreen.preventAutoHideAsync().catch(() => {});
 function Navigation() {
   const { userId } = useApp();
@@ -25,5 +26,5 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({ Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold });
   useEffect(() => { if (loaded || error) SplashScreen.hideAsync().catch(() => {}); }, [loaded, error]);
   if (!loaded && !error) return null;
-  return <SafeAreaProvider><AppProvider><View style={{ flex: 1, backgroundColor: Colors.canvas }}><View style={{ flex: 1, width: '100%', maxWidth: 560, alignSelf: 'center', overflow: 'hidden' }}><Navigation /></View></View></AppProvider></SafeAreaProvider>;
+  return <SafeAreaProvider><MotionProvider><AppProvider><View style={{ flex: 1, backgroundColor: Colors.canvas }}><View style={{ flex: 1, width: '100%', maxWidth: 560, alignSelf: 'center', overflow: 'hidden' }}><Navigation /></View></View></AppProvider></MotionProvider></SafeAreaProvider>;
 }

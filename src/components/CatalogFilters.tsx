@@ -1,7 +1,8 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import type { Category } from '@/types';
 import type { ProductFilter } from '@/domain/trades';
 import { Colors, Spacing, typography, Radius } from '@/tokens/theme';
+import InteractivePressable from '@/components/ui/InteractivePressable';
 const filters: { id: ProductFilter; name: string }[] = [
   { id: null, name: 'Todos' }, { id: 'today', name: 'Lançados hoje' },
   { id: 'featured', name: 'Destaques' }, { id: 'trusted', name: 'Usuários confiáveis' },
@@ -23,10 +24,11 @@ export default function CatalogFilters({ categories, categoryId, filter, onCateg
   </View>;
 }
 function Chip({ label, selected, onPress }: { label: string; selected: boolean; onPress: () => void }) {
-  return <Pressable accessibilityRole="button" accessibilityState={{ selected }} onPress={onPress}
+  return <InteractivePressable accessibilityRole="button" accessibilityState={{ selected }} onPress={onPress}
+    hoverStyle={selected ? undefined : styles.hovered}
     style={[styles.chip, selected && styles.selected]}>
     <Text style={[styles.text, selected && styles.selectedText]}>{label}</Text>
-  </Pressable>;
+  </InteractivePressable>;
 }
 const styles = StyleSheet.create({
   container: { gap: Spacing.two }, row: { gap: 7, flexDirection: 'row', flexWrap: 'wrap' },
@@ -34,5 +36,6 @@ const styles = StyleSheet.create({
   chip: { minHeight: 40, justifyContent: 'center', paddingHorizontal: 12,
     borderRadius: Radius.pill, borderWidth: 1, borderColor: Colors.border, backgroundColor: Colors.surface },
   selected: { backgroundColor: Colors.primary, borderColor: Colors.primary },
+  hovered: { backgroundColor: Colors.selected, borderColor: Colors.primary },
   text: { ...typography.caption, color: Colors.secondaryText }, selectedText: { color: Colors.surface },
 });
