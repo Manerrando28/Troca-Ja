@@ -26,21 +26,15 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 | Banco Supabase/Firebase | Consulta REST de produtos e categorias + SQL/RLS e importação; **ativação remota pendente**, ver [guia passo a passo](docs/SUPABASE.md) |
 | Simulação comprovada | 7 capturas locais e teste completo entre dois participantes no Edge, viewport 390×844 |
 
-O APK instalável pertence ao **CP6**. O documento do CP5 aceita prints ou vídeo como evidência; as capturas abaixo registram esta versão. Nenhum APK ou vídeo foi publicado nesta etapa.
-
-## Evidências de execução
-
-Capturas reais da versão web exportada, realizadas em 07/10/2026. Não são mockups nem imagens da versão anterior.
+## Capturas de tela
 
 | Contas fictícias | Home e filtros | Proposta |
 | --- | --- | --- |
 | <img src="docs/evidencias/01-contas.png" width="230" alt="Seleção de conta fictícia"> | <img src="docs/evidencias/02-home.png" width="230" alt="Busca por PS5 e filtro Jogos"> | <img src="docs/evidencias/03-proposta.png" width="230" alt="Nintendo Switch oferecido por PS5"> |
 
-| Histórico de trocas | Conversas aceitas | Chat |
-| --- | --- | --- |
-| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta enviada e ofertas recebidas"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> |
-
-<img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil com produtos da conta fictícia">
+| Histórico de trocas | Conversas aceitas | Chat | Perfil |
+| --- | --- | --- | --- |
+| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta enviada e ofertas recebidas"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil com produtos da conta fictícia"> |
 
 Detalhes dos testes efetivamente executados: [registro de validação](docs/VALIDACAO.md).
 
@@ -123,7 +117,3 @@ O tema centraliza as cores usadas pelas telas. Cabeçalhos e feedback visual usa
 A seleção explícita de contas permite validar os dois lados de uma troca sem simular uma autenticação de produção. Context API mantém as abas sincronizadas, incluindo os produtos usados para validar propostas. Regras puras protegem o domínio e são verificáveis sem emulador. A integração pública de produtos e categorias permite demonstrar leitura real do banco; conversas continuam locais.
 
 Para o CP6: autenticação real, persistência de propostas/mensagens com RLS por participante, cadastro/edição de produtos pelo app, finalização da troca, testes em Android, manual final e build de APK. Mais detalhes em [decisões técnicas](docs/DECISOES-TECNICAS.md).
-
-## Publicação e entrega
-
-Esta cópia foi recebida sem `.git`; histórico e URL do GitHub não puderam ser verificados. Publique o código e as evidências no repositório real do grupo e confirme os papéis antes de entregar. Use commits descritivos das mudanças reais, sem criar um histórico fictício. O formato de envio e prazo devem seguir a orientação da aula; não foram especificados no PDF para o CP5.
