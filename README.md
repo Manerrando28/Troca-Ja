@@ -4,6 +4,8 @@ Aplicativo de troca de produtos entre estudantes, desenvolvido em React Native, 
 
 **Status:** protótipo funcional com mocks, testes automatizados e evidências reais no navegador. O adaptador Supabase está implementado, mas a conexão com um projeto real ainda precisa ser configurada e comprovada. Confira o [checklist de entrega](docs/ENTREGA-CP5.md).
 
+**Link da APK:** https://expo.dev/accounts/julia_silva77/projects/troca-ja/builds/8eb8b615-dcf0-4218-ad45-076cf11d9248
+
 ## Integrantes e papéis
 
 Distribuição proposta para esta entrega, a confirmar pelo grupo; não representa comprovação de autoria individual das alterações.
