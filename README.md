@@ -30,11 +30,11 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 
 | Contas fictícias | Home e filtros | Proposta |
 | --- | --- | --- |
-| <img src="docs/evidencias/01-contas.png" width="230" alt="Seleção de conta fictícia"> | <img src="docs/evidencias/02-home.png" width="230" alt="Busca por PS5 e filtro Jogos"> | <img src="docs/evidencias/03-proposta.png" width="230" alt="Nintendo Switch oferecido por PS5"> |
+| <img src="docs/evidencias/01-contas.png" width="230" alt="Login com contas de demonstração"> | <img src="docs/evidencias/02-home.png" width="230" alt="Home com identidade TrocaJá, filtros e produtos do Supabase"> | <img src="docs/evidencias/03-proposta.png" width="230" alt="iPad Mini 2021 oferecido por Apple AirPods"> |
 
 | Histórico de trocas | Conversas aceitas | Chat | Perfil |
 | --- | --- | --- | --- |
-| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta enviada e ofertas recebidas"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil com produtos da conta fictícia"> |
+| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta recebida de Ana para trocar iPad Mini por AirPods"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil de Ana com produtos e fotos do Supabase"> |
 
 Detalhes dos testes efetivamente executados: [registro de validação](docs/VALIDACAO.md).
 
