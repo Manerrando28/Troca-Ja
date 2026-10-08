@@ -4,8 +4,6 @@ Aplicativo de troca de produtos entre estudantes, desenvolvido em React Native, 
 
 **Status:** protótipo funcional com mocks, testes automatizados e evidências reais no navegador. O adaptador Supabase está implementado, mas a conexão com um projeto real ainda precisa ser configurada e comprovada. Confira o [checklist de entrega](docs/ENTREGA-CP5.md).
 
-**Link da APK:** https://expo.dev/accounts/julia_silva77/projects/troca-ja/builds/8eb8b615-dcf0-4218-ad45-076cf11d9248
-
 ## Integrantes e papéis
 
 Distribuição proposta para esta entrega, a confirmar pelo grupo; não representa comprovação de autoria individual das alterações.
@@ -114,8 +112,9 @@ Tecnologias principais mantidas: Expo 57, React 19, React Native 0.86, Expo Rout
 
 O tema centraliza as cores usadas pelas telas. Cabeçalhos e feedback visual usam componentes comuns. A Home foi reduzida de 661 linhas para uma composição de componentes e regras separadas. A navegação do chat usa objeto de rota tipado, sem `as any`.
 
-## Decisões e próximos passos
+# TrocaJá — Checkpoint 6
 
-A seleção explícita de contas permite validar os dois lados de uma troca sem simular uma autenticação de produção. Context API mantém as abas sincronizadas, incluindo os produtos usados para validar propostas. Regras puras protegem o domínio e são verificáveis sem emulador. A integração pública de produtos e categorias permite demonstrar leitura real do banco; conversas continuam locais.
+Aplicativo de troca de produtos entre estudantes, desenvolvido em React Native, Expo e TypeScript. Facilita o reaproveitamento de itens e a negociação entre pessoas da comunidade acadêmica.
 
-Para o CP6: autenticação real, persistência de propostas/mensagens com RLS por participante, cadastro/edição de produtos pelo app, finalização da troca, testes em Android, manual final e build de APK. Mais detalhes em [decisões técnicas](docs/DECISOES-TECNICAS.md).
+**Link da APK:** https://expo.dev/accounts/julia_silva77/projects/troca-ja/builds/8eb8b615-dcf0-4218-ad45-076cf11d9248
+
