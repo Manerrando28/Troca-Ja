@@ -1,0 +1,134 @@
+[
+  {
+    "id": "demo-dummyjson-99",
+    "owner_id": "user-1",
+    "name": "Amazon Echo Plus",
+    "description": "Caixa de som inteligente com assistente Alexa e controle por voz. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/mobile-accessories/amazon-echo-plus/1.webp",
+    "featured": true,
+    "source_url": "https://dummyjson.com/products/99"
+  },
+  {
+    "id": "demo-dummyjson-100",
+    "owner_id": "user-2",
+    "name": "Apple AirPods",
+    "description": "Fones de ouvido sem fio da Apple com estojo de carregamento. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/100"
+  },
+  {
+    "id": "demo-dummyjson-101",
+    "owner_id": "user-3",
+    "name": "AirPods Max prata",
+    "description": "Headphone da Apple com cancelamento de ruído e acabamento prateado. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods-max-silver/1.webp",
+    "featured": true,
+    "source_url": "https://dummyjson.com/products/101"
+  },
+  {
+    "id": "demo-dummyjson-121",
+    "owner_id": "user-4",
+    "name": "iPhone 5s",
+    "description": "Smartphone compacto da Apple, um modelo clássico da linha iPhone. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/smartphones/iphone-5s/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/121"
+  },
+  {
+    "id": "demo-dummyjson-137",
+    "owner_id": "user-1",
+    "name": "Bola de futebol americano",
+    "description": "Bola para praticar passes e recepções de futebol americano. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-4",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/sports-accessories/american-football/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/137"
+  },
+  {
+    "id": "demo-dummyjson-138",
+    "owner_id": "user-2",
+    "name": "Bola de beisebol",
+    "description": "Bola de beisebol para treinos de arremesso e recepção. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-4",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/sports-accessories/baseball-ball/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/138"
+  },
+  {
+    "id": "demo-dummyjson-139",
+    "owner_id": "user-3",
+    "name": "Luva de beisebol",
+    "description": "Luva esportiva para praticar recepções no beisebol. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-4",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/sports-accessories/baseball-glove/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/139"
+  },
+  {
+    "id": "demo-dummyjson-140",
+    "owner_id": "user-4",
+    "name": "Bola de basquete",
+    "description": "Bola de basquete para treinos e partidas entre amigos. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-4",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/sports-accessories/basketball/1.webp",
+    "featured": true,
+    "source_url": "https://dummyjson.com/products/140"
+  },
+  {
+    "id": "demo-dummyjson-159",
+    "owner_id": "user-1",
+    "name": "iPad Mini 2021",
+    "description": "Tablet compacto da Apple na cor Starlight para estudo e entretenimento. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/tablets/ipad-mini-2021-starlight/1.webp",
+    "featured": true,
+    "source_url": "https://dummyjson.com/products/159"
+  },
+  {
+    "id": "demo-dummyjson-160",
+    "owner_id": "user-2",
+    "name": "Samsung Galaxy Tab S8 Plus",
+    "description": "Tablet Android da Samsung na cor cinza, com suporte à S Pen. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/160"
+  },
+  {
+    "id": "demo-dummyjson-78",
+    "owner_id": "user-3",
+    "name": "MacBook Pro 14 polegadas",
+    "description": "Notebook da Apple em cinza espacial, com processador M1 Pro. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/1.webp",
+    "featured": true,
+    "source_url": "https://dummyjson.com/products/78"
+  },
+  {
+    "id": "demo-dummyjson-79",
+    "owner_id": "user-4",
+    "name": "Asus Zenbook Pro Duo",
+    "description": "Notebook da Asus com duas telas, voltado a criação e produtividade. Item de demonstração do catálogo público DummyJSON.",
+    "category_id": "cat-1",
+    "available_for_trade": true,
+    "image_url": "https://cdn.dummyjson.com/product-images/laptops/asus-zenbook-pro-dual-screen-laptop/1.webp",
+    "featured": false,
+    "source_url": "https://dummyjson.com/products/79"
+  }
+]
