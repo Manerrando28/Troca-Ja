@@ -1,0 +1,63 @@
+const { chromium, expect } = require('@playwright/test');
+const fs = require('node:fs/promises');
+
+(async () => {
+  const browser = await chromium.launch({ channel: 'msedge', headless: true });
+  try {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'no-preference' });
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto('http://localhost:4180');
+    await page.getByRole('textbox', { name: 'E-mail', exact: true }).fill('ana@trocaja.com');
+    await page.getByLabel('Senha', { exact: true }).fill('Ana12345');
+    await page.getByRole('button', { name: 'Entrar', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Ver Apple AirPods', exact: true })).toBeVisible({ timeout: 20000 });
+    await expect(page.getByText('14 produtos disponíveis', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Ver Apple AirPods', exact: true }).locator('img').evaluate(async image => {
+      await image.decode();
+    });
+    const mark = page.getByTestId('home-brand-watermark');
+    await expect(mark).toBeVisible();
+    const transform = await mark.evaluate(element => getComputedStyle(element).transform);
+    await expect.poll(() => mark.evaluate(element => getComputedStyle(element).transform)).not.toBe(transform);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.waitForTimeout(250);
+    const still = await mark.evaluate(element => getComputedStyle(element).transform);
+    await page.waitForTimeout(350);
+    expect(await mark.evaluate(element => getComputedStyle(element).transform)).toBe(still);
+    await fs.mkdir('docs/evidencias', { recursive: true });
+    await page.screenshot({ path: 'docs/evidencias/10-home-identidade-mobile.png' });
+    await page.setViewportSize({ width: 320, height: 740 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: 'docs/evidencias/11-home-identidade-320.png' });
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.screenshot({ path: 'docs/evidencias/12-home-identidade-desktop.png' });
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const card = page.getByRole('button', { name: 'Ver Apple AirPods', exact: true });
+    const parent = card.locator('..');
+    const normal = await parent.evaluate(element => getComputedStyle(element).transform);
+    await card.hover();
+    await expect.poll(() => parent.evaluate(element => getComputedStyle(element).transform)).not.toBe(normal);
+    await expect(card).toHaveCSS('border-top-color', 'rgb(23, 100, 232)');
+    await card.click();
+    await expect(page.getByRole('button', { name: 'Fechar proposta' })).toBeVisible();
+    await expect(page.getByRole('checkbox', { name: 'iPad Mini 2021', exact: true })).toBeVisible();
+    await page.getByRole('checkbox', { name: 'iPad Mini 2021', exact: true }).click();
+    await page.getByRole('button', { name: 'Propor negociação (1)', exact: true }).click();
+    await expect(page.getByText('Proposta enviada! Acompanhe o status na aba Trocas.')).toBeVisible();
+    await page.getByRole('tab', { name: 'Perfil', exact: true }).click();
+    await page.getByRole('button', { name: 'Sair', exact: true }).click();
+    await page.getByRole('textbox', { name: 'E-mail', exact: true }).fill('bruno@trocaja.com');
+    await page.getByLabel('Senha', { exact: true }).fill('Bruno12345');
+    await page.getByRole('button', { name: 'Entrar', exact: true }).click();
+    await page.getByRole('tab', { name: 'Trocas', exact: true }).click();
+    await page.getByRole('button', { name: 'Aceitar proposta', exact: true }).click();
+    await page.getByRole('tab', { name: 'Negociações', exact: true }).click();
+    await page.getByRole('button', { name: 'Conversar com Ana Costa sobre iPad Mini 2021', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Mensagem', exact: true }).fill('Vamos combinar a troca?');
+    await page.getByRole('button', { name: 'Enviar mensagem', exact: true }).click();
+    await expect(page.getByText('Vamos combinar a troca?', { exact: true }).last()).toBeVisible();
+    expect(errors).toEqual([]);
+    console.log('Home validada: 20 produtos remotos; 14 visíveis para Ana; animação, redução de movimento, hover, proposta, aceite, chat e três tamanhos de tela.');
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

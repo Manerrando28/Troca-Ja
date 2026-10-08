@@ -2,7 +2,7 @@
 
 Aplicativo de troca de produtos entre estudantes, desenvolvido em React Native, Expo e TypeScript. Facilita o reaproveitamento de itens e a negociação entre pessoas da comunidade acadêmica.
 
-**Status:** protótipo funcional com mocks, testes automatizados e evidências reais no navegador. O adaptador Supabase está implementado, mas a conexão com um projeto real ainda precisa ser configurada e comprovada. Confira o [checklist de entrega](docs/ENTREGA-CP5.md).
+**Status:** protótipo funcional conectado ao projeto Supabase **Troca Já**, com 20 produtos e quatro categorias. A Home usa a marca em tamanho grande com animação suave, e cards, botões e filtros respondem ao mouse e ao toque. Contas, propostas e mensagens continuam demonstrativas e em memória.
 
 ## Integrantes e papéis
 
@@ -23,7 +23,7 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 | Dados mockados coerentes | 4 usuários, 4 categorias, 8 produtos; relações por ID; imagens locais ou ícones quando não há foto correspondente |
 | Ambiente de testes | `npm run check`, Playwright e [roteiro manual](docs/TESTES.md) |
 | Documentação | [Fluxos](docs/FLUXOS.md), [decisões técnicas](docs/DECISOES-TECNICAS.md), este README |
-| Banco Supabase/Firebase | Consulta REST de produtos e categorias + SQL/RLS e importação; **ativação remota pendente**, ver [guia passo a passo](docs/SUPABASE.md) |
+| Banco Supabase/Firebase | Leitura real de produtos e categorias validada; RLS permite apenas leitura pública. Veja o [guia passo a passo](docs/SUPABASE.md) |
 | Simulação comprovada | 7 capturas locais e teste completo entre dois participantes no Edge, viewport 390×844 |
 
 ## Capturas de tela
@@ -85,6 +85,8 @@ O teste gera sete capturas em `docs/evidencias/`. `npm run check` executa TypeSc
 
 ## Banco de dados
 
+O projeto atual já está conectado: os oito registros originais foram preservados e receberam a companhia de **12 produtos de demonstração com imagens externas** do DummyJSON. Veja [origem, imagens e importação](docs/CATALOGO-INTERNET.md). Recarregue o app para buscar alterações feitas no banco.
+
 Siga o [guia para iniciantes](docs/SUPABASE.md): crie o projeto, execute `supabase/schema.sql` e `supabase/seed.sql` no SQL Editor para importar os oito produtos, envie as fotos ao Storage e configure `.env.local`. Home, Perfil, propostas e conversas passam a usar o catálogo recebido do banco. Sem configuração, usa mocks e indica esse estado no Perfil. Com configuração remota, falhas mostram aviso e nova tentativa, sem substituir os produtos por mocks.
 
 A integração desta etapa é **leitura de produtos e categorias**. Propostas, mensagens e contas continuam em memória. No modo remoto, propostas e mensagens começam vazias; novas negociações duram até recarregar o app. Produtos podem ser cadastrados e editados pelo Table Editor do Supabase. A chave pública usa permissões de leitura e RLS; nunca inclua chaves secretas ou `service_role` no app.
@@ -111,6 +113,8 @@ docs/                  Fluxos, decisões, testes e evidências
 Tecnologias principais mantidas: Expo 57, React 19, React Native 0.86, Expo Router, TypeScript, Inter e Expo Linear Gradient. As versões exatas instaladas estão no `package-lock.json`. O projeto original continha dependências de UI adicionais; esta refatoração preservou o conjunto base para evitar uma migração desnecessária.
 
 O tema centraliza as cores usadas pelas telas. Cabeçalhos e feedback visual usam componentes comuns. A Home foi reduzida de 661 linhas para uma composição de componentes e regras separadas. A navegação do chat usa objeto de rota tipado, sem `as any`.
+
+A identidade da Home combina fundo azul e verde, logo grande recortado à direita e animação de respiração. As interações têm realce de foco, hover e resposta ao toque; respeitam a preferência de redução de movimento. A animação de fundo pausa ao sair da Home ou colocar o aplicativo em segundo plano. Confira as capturas [mobile](docs/evidencias/10-home-identidade-mobile.png), [tela de 320 px](docs/evidencias/11-home-identidade-320.png) e [desktop](docs/evidencias/12-home-identidade-desktop.png).
 
 # TrocaJá — Checkpoint 6
 

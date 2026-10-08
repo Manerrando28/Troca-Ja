@@ -1,5 +1,7 @@
 # Guia: transferir os produtos do TrocaJá para o Supabase
 
+**Situação atual (07/10/2026):** o projeto **Troca Já** já está conectado e validado, com quatro categorias e 20 produtos. As tabelas, as regras de leitura e a importação inicial foram realizadas. Foram acrescentados [12 produtos com fotos da internet](CATALOGO-INTERNET.md), preservando os registros existentes. Para administrar esse projeto, vá direto à seção 7; os passos iniciais abaixo servem para reproduzir a configuração em outro projeto.
+
 Ao terminar este guia, os oito produtos atuais estarão no banco e o aplicativo buscará produtos e categorias pela internet. Não é necessário instalar o Supabase CLI nem escrever o SQL: os scripts já estão prontos.
 
 O Supabase fornece um banco de dados e uma API para consultá-lo. Uma **tabela** funciona como uma planilha: cada linha é um produto e cada coluna guarda uma informação dele. **Storage** é a área para arquivos, como fotos. **SQL Editor** é a tela onde você executará os scripts abaixo. **RLS** são as regras que controlam o acesso aos dados.
@@ -58,7 +60,7 @@ As fotos ficam `NULL` por enquanto (sem imagem); o aplicativo mostra um ícone. 
 
    Para Android: `npm run android -- --clear`. Use Node 22.18+ ou 24 LTS. Se estiver usando uma versão exportada, gere-a novamente com `npm run export:web -- --clear`, pois essas variáveis são incorporadas no build.
 
-6. Entre com uma das contas de demonstração exibidas no login. No **Perfil**
+6. Entre com uma das contas de demonstração exibidas no login. No **Perfil**, confira os seus produtos; na Home, aparecem os produtos disponíveis de outras contas.
 
 O `.env.local` já é ignorado pelo Git. A chave publishable é pública por definição; a proteção contra escrita vem das permissões e políticas criadas pelo SQL.
 
@@ -99,6 +101,8 @@ Recarregue o aplicativo para ver as fotos. Não é necessário liberar upload p�
 
 Em um banco recém-importado existem oito produtos, mas Ana vê cinco na Home: seus próprios dois produtos ficam no Perfil e o tênis está indisponível. O número da Home não precisa ser oito.
 
+No catálogo atual de 20 registros, Ana vê 14 produtos na Home: cinco pertencem a ela e um está indisponível.
+
 ## 7. Cadastrar ou editar produtos depois
 
 Em **Table Editor → products**, use **Insert row** para cadastrar ou edite uma linha existente. Não precisa alterar o código nem executar novamente o seed.
@@ -138,7 +142,7 @@ Produtos e categorias são consultados pela Data API, com paginação e validaç
 
 Login, propostas e mensagens **continuam em memória**: não são gravados no Supabase nem sincronizados entre celulares. Em modo remoto, propostas e conversas começam vazias para não misturar negociações fictícias com produtos do banco; podem ser criadas durante a sessão e somem ao recarregar. Não cadastre usuários reais nem habilite escrita pública nesta etapa.
 
-Não foram fornecidas credenciais de um projeto real. A validação remota deve ser feita seguindo o passo 6; os testes locais usam respostas simuladas da API.
+A conexão real foi validada com a configuração local do aplicativo: quatro categorias, 20 produtos e as 12 novas imagens acessíveis. Os testes de contrato também usam respostas simuladas para verificar erros e catálogo vazio sem alterar o banco.
 
 Para verificar o código, execute `npm run check`. Para exercitar o modo Supabase no navegador com uma API simulada, execute `npm run test:e2e:supabase` (requer Chromium do Playwright ou `PLAYWRIGHT_CHANNEL=msedge`). Esse teste usa credenciais fictícias, ignora `.env.local`, limpa o cache do Metro e gera o bundle separado em `dist-supabase/`; não altera seu banco nem os arquivos do preview normal em `dist/`. Depois dele, inicie o app com `--clear` ou use `npm run export:web -- --clear` para gerar um novo build com sua própria configuração.
 

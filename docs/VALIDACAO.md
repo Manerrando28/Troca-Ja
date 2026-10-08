@@ -1,5 +1,17 @@
 # Registro de validação — 07/10/2026
 
+## Home com identidade e catálogo real
+
+- Projeto Supabase **Troca Já** conectado: quatro categorias e 20 produtos. Importados 12 registros de demonstração do DummyJSON, preservando os oito anteriores.
+- Leitura verificada pelo adaptador real do aplicativo e verificação HTTP das 12 novas imagens aprovada. RLS e permissões públicas mantidas somente para leitura; verificação de segurança do Supabase sem alertas.
+- TypeScript, ESLint e 16 testes automatizados aprovados. Exportação web concluída com a configuração real do projeto.
+- Edge via Playwright: animação do logo, preferência de redução de movimento e hover dos cards aprovados. Fluxo Ana → proposta com iPad Mini → Bruno aceita → mensagem no chat aprovado, sem erros de execução capturados.
+- Home revisada em 390×844, 320×740 e 1366×900; sem transbordamento horizontal na tela de 320 px. Capturas atualizadas: [mobile](evidencias/10-home-identidade-mobile.png), [320 px](evidencias/11-home-identidade-320.png) e [desktop](evidencias/12-home-identidade-desktop.png).
+
+O roteiro `scripts/check-home-identity.cjs` usa o catálogo real desta data e um preview já iniciado na porta 4180. Não escreve no banco: propostas e mensagens do cenário ficam na memória do navegador. Ele depende dos produtos importados e das contas de demonstração atuais; não integra a suíte isolada de testes. A checagem das fotos e da leitura remota pode ser repetida conforme [CATALOGO-INTERNET.md](CATALOGO-INTERNET.md).
+
+Os registros abaixo são históricos e descrevem a etapa anterior à conexão real.
+
 ## Atualização: produtos no Supabase
 
 Refatoração validada no Windows com Node **24.19.0** e Microsoft Edge. O Node 22.11 do sistema é anterior ao requisito do projeto; os executáveis de TypeScript, ESLint e testes foram chamados com o runtime Node 24.
@@ -44,7 +56,7 @@ O cenário principal monitora `pageerror` e terminou sem erros de execução cap
 
 ## Limites da validação
 
-- Supabase remoto não foi configurado: testes do adaptador usam respostas HTTP simuladas. A comprovação real continua pendente conforme [SUPABASE.md](SUPABASE.md).
+- A validação inicial do adaptador usou respostas HTTP simuladas; a conexão real foi comprovada na atualização acima.
 - Não foram executados emulador Android, dispositivo físico ou build APK. A evidência de simulação desta entrega é a execução web, permitida para CP5.
 - A matriz manual completa inclui cenários adicionais ainda não executados no navegador (por exemplo, URLs de chat indisponível). Regras de autorização/status foram verificadas nos testes de domínio.
 - O Node emite aviso de detecção de módulo nos testes TypeScript; isso não causa falha. O bundler também informa avisos de variáveis de cor do terminal.
