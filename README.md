@@ -32,9 +32,13 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 | --- | --- | --- | --- |
 | <img src="docs/evidencias/01-contas.png" width="230" alt="Login com contas de demonstração"> | <img src="docs/evidencias/02-home.png" width="230" alt="Home com identidade TrocaJá, filtros e produtos do Supabase"> | <img src="docs/evidencias/03-proposta.png" width="230" alt="iPad Mini 2021 oferecido por Apple AirPods"> | <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta recebida de Ana para trocar iPad Mini por AirPods"> |
 
-| Conversas aceitas | Chat | Perfil | Vídeo |
-| --- | --- | --- | --- |
-| <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil de Ana com produtos e fotos do Supabase"> | https://github.com/user-attachments/assets/ac265b26-60c1-4662-aa41-0524526a9eb8 |
+| Conversas aceitas | Chat | Perfil |
+| --- | --- | --- |
+| <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil de Ana com produtos e fotos do Supabase"> |
+
+| Vídeo |
+| --- |
+| https://github.com/user-attachments/assets/ac265b26-60c1-4662-aa41-0524526a9eb8 |
 
 
 Detalhes dos testes efetivamente executados: [registro de validação](docs/VALIDACAO.md).
