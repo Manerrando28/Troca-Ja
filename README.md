@@ -26,8 +26,6 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 | Banco Supabase/Firebase | Consulta REST de produtos e categorias + SQL/RLS e importação; **ativação remota pendente**, ver [guia passo a passo](docs/SUPABASE.md) |
 | Simulação comprovada | 7 capturas locais e teste completo entre dois participantes no Edge, viewport 390×844 |
 
-O APK instalável pertence ao **CP6**. O documento do CP5 aceita prints ou vídeo como evidência; as capturas abaixo registram esta versão. Nenhum APK ou vídeo foi publicado nesta etapa.
-
 ## Capturas de tela
 
 | Contas fictícias | Home e filtros | Proposta |
