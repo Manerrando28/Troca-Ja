@@ -13,7 +13,7 @@ export default function HomeHero({ name }: { name: string }) {
     <Text style={styles.title}>Novas histórias.{'\n'}<Text style={styles.titleAccent}>Boas trocas.</Text></Text>
     <Text style={styles.subtitle}>O que você não usa pode ser{'\n'}exatamente o que alguém procura.</Text>
     <View style={styles.signature}><Feather name="repeat" size={13} color={Colors.accent} />
-      <Text style={styles.signatureText}>Menos parado. Mais compartilhado.</Text></View>
+      <Text style={styles.signatureText}>Renovar trocando o que você não precisa.</Text></View>
   </View>;
 }
 
