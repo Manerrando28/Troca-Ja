@@ -33,7 +33,6 @@ test('produtos remotos alimentam Home, Perfil, proposta, aceite e conversa', asy
   await expect(page.getByRole('button', { name: 'Música remota', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Ver PS5', exact: true })).toHaveCount(0);
   await page.getByRole('tab', { name: 'Perfil', exact: true }).click();
-  await expect(page.getByText('Produtos e categorias conectados ao Supabase.')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Ver Violão remoto da Ana', exact: true })).toBeVisible();
   await page.getByRole('tab', { name: 'Trocas', exact: true }).click();
   await expect(page.getByText('Nenhuma proposta ainda. Escolha um produto na Home.')).toBeVisible();

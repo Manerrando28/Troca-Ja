@@ -58,7 +58,7 @@ As fotos ficam `NULL` por enquanto (sem imagem); o aplicativo mostra um ícone. 
 
    Para Android: `npm run android -- --clear`. Use Node 22.18+ ou 24 LTS. Se estiver usando uma versão exportada, gere-a novamente com `npm run export:web -- --clear`, pois essas variáveis são incorporadas no build.
 
-6. Entre com uma das contas de demonstração exibidas no login. No **Perfil**, confira a mensagem **“Produtos e categorias conectados ao Supabase.”**
+6. Entre com uma das contas de demonstração exibidas no login. No **Perfil**
 
 O `.env.local` já é ignorado pelo Git. A chave publishable é pública por definição; a proteção contra escrita vem das permissões e políticas criadas pelo SQL.
 

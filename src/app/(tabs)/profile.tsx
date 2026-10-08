@@ -27,7 +27,10 @@ export default function Profile() {
         </View>
         <Text style={styles.section}>Meus produtos</Text>
         {mine.map(product => <ProductCard key={product.id} product={product} owner={user} onPress={() => setDetail(product)} />)}
-        <View style={styles.connection}><Feather name={catalogStatus === 'connected' ? 'check-circle' : 'database'} size={16} color={Colors.accent} /><Text style={styles.connectionText}>{catalogStatus === 'connected' ? 'Produtos e categorias conectados ao Supabase.' : catalogStatus === 'error' ? 'Não foi possível carregar o catálogo. Tente novamente na Home.' : catalogStatus === 'loading' ? 'Conectando ao catálogo…' : 'Catálogo local de demonstração. Supabase não configurado.'}</Text></View>
+        {mine.length === 0 && <Text style={styles.muted}>Você ainda não cadastrou nenhum produto.</Text>}
+        <Text style={styles.section}>Status do catálogo</Text>
+        <View style={styles.connection}><Feather name={catalogStatus === 'connected' ? 'check-circle' : 'x-circle'} size={20} color={catalogStatus === 'connected' ? Colors.success : Colors.error} /><Text style={styles.connectionText}>{catalogStatus === 'connected' ? 'Produtos e categorias conectados ao Supabase.' : 'Não foi possível conectar ao Supabase. Verifique sua conexão de internet.'}</Text></View>
+        <Text style={styles.section}>Ações</Text>
         <Button title="Sair da conta" variant="secondary" onPress={logout} />
       </View>
     </ScrollView>
