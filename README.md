@@ -28,19 +28,15 @@ Distribuição proposta para esta entrega, a confirmar pelo grupo; não represen
 
 O APK instalável pertence ao **CP6**. O documento do CP5 aceita prints ou vídeo como evidência; as capturas abaixo registram esta versão. Nenhum APK ou vídeo foi publicado nesta etapa.
 
-## Evidências de execução
-
-Capturas reais da versão web exportada, realizadas em 07/10/2026. Não são mockups nem imagens da versão anterior.
+## Capturas de tela
 
 | Contas fictícias | Home e filtros | Proposta |
 | --- | --- | --- |
 | <img src="docs/evidencias/01-contas.png" width="230" alt="Seleção de conta fictícia"> | <img src="docs/evidencias/02-home.png" width="230" alt="Busca por PS5 e filtro Jogos"> | <img src="docs/evidencias/03-proposta.png" width="230" alt="Nintendo Switch oferecido por PS5"> |
 
-| Histórico de trocas | Conversas aceitas | Chat |
-| --- | --- | --- |
-| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta enviada e ofertas recebidas"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> |
-
-<img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil com produtos da conta fictícia">
+| Histórico de trocas | Conversas aceitas | Chat | Perfil |
+| --- | --- | --- | --- |
+| <img src="docs/evidencias/04-trocas.png" width="230" alt="Proposta enviada e ofertas recebidas"> | <img src="docs/evidencias/05-conversas.png" width="230" alt="Conversas disponíveis após aceite"> | <img src="docs/evidencias/06-chat.png" width="230" alt="Mensagem enviada no chat"> | <img src="docs/evidencias/07-perfil.png" width="230" alt="Perfil com produtos da conta fictícia"> |
 
 Detalhes dos testes efetivamente executados: [registro de validação](docs/VALIDACAO.md).
 
